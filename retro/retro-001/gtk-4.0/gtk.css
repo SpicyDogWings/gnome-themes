@@ -1,0 +1,443 @@
+/* ============================================================================
+ * retro-001 — GTK4 · estilo RETRO OS
+ * ----------------------------------------------------------------------------
+ * beige + navy + teal · bordes BISEL 3D (raised/sunken) · esquinas rectas.
+ * Variante CLARA por defecto y variante DARK automática (sigue el
+ * color-scheme del sistema) al final de la paleta.
+ * Se aplica como override de usuario en ~/.config/gtk-4.0/gtk.css
+ * ========================================================================== */
+
+/* --- paleta --- */
+@define-color bg          #C8C4B8;  /* fondo beige                    */
+@define-color fg          #1A1A1A;  /* texto                          */
+@define-color base        #E8E4DC;  /* inputs / listas (beige claro)  */
+@define-color surface     #D4D0C8;  /* botones / paneles              */
+@define-color border      #808080;
+@define-color bevel_light #FFFFFF;  /* bisel claro                    */
+@define-color bevel_dark  #404040;  /* bisel oscuro                   */
+@define-color accent      #457B9D;  /* azul (headers, progress, foco) */
+@define-color accent_fg   #FFFFFF;
+@define-color title       @accent;  /* title bar = acento             */
+@define-color title_fg    #FFFFFF;
+@define-color active      @accent;  /* selección (= acento)           */
+@define-color active_fg   @accent_fg;
+@define-color hover       #DEDAD2;
+@define-color success     #2E8B57;
+@define-color warning     #DBA165;
+@define-color error       #DB7865;
+@define-color info        #6598DB;
+
+
+/* --- nombres GTK4 pelado (theme_*) --- */
+@define-color theme_bg_color          @bg;
+@define-color theme_fg_color          @fg;
+@define-color theme_base_color        @base;
+@define-color theme_text_color        @fg;
+@define-color theme_selected_bg_color @active;
+@define-color theme_selected_fg_color @active_fg;
+@define-color insensitive_bg_color    @surface;
+@define-color insensitive_fg_color    #808080;
+@define-color insensitive_base_color  @base;
+@define-color borders                 @border;
+@define-color warning_color           @warning;
+@define-color error_color             @error;
+@define-color success_color           @success;
+@define-color accent_color            @accent;
+@define-color content_view_bg         @base;
+@define-color text_view_bg            @base;
+
+
+/* --- nombres libadwaita --- */
+@define-color window_bg_color  @bg;
+@define-color window_fg_color  @fg;
+@define-color view_bg_color    @base;
+@define-color view_fg_color    @fg;
+
+@define-color headerbar_bg_color       @title;
+@define-color headerbar_fg_color       @title_fg;
+@define-color headerbar_border_color   @bevel_dark;
+@define-color headerbar_backdrop_color @title;
+@define-color headerbar_shade_color    transparent;
+
+@define-color sidebar_bg_color       @bg;
+@define-color sidebar_fg_color       @fg;
+@define-color sidebar_backdrop_color @bg;
+@define-color sidebar_border_color   @border;
+@define-color sidebar_shade_color    alpha(black, 0.3);
+
+@define-color secondary_sidebar_bg_color       @bg;
+@define-color secondary_sidebar_fg_color       @fg;
+@define-color secondary_sidebar_backdrop_color @bg;
+@define-color secondary_sidebar_border_color   @border;
+@define-color secondary_sidebar_shade_color    alpha(black, 0.3);
+
+@define-color card_bg_color    @surface;
+@define-color card_fg_color    @fg;
+@define-color card_shade_color transparent;
+
+@define-color popover_bg_color @surface;
+@define-color popover_fg_color @fg;
+
+@define-color dialog_bg_color  @bg;
+@define-color dialog_fg_color  @fg;
+
+@define-color accent_bg_color       @accent;
+@define-color accent_fg_color       @accent_fg;
+@define-color destructive_color     @error;
+@define-color destructive_bg_color  @error;
+@define-color destructive_fg_color  @active_fg;
+@define-color error_bg_color        @error;
+@define-color error_fg_color        @active_fg;
+@define-color success_bg_color      @success;
+@define-color success_fg_color      @active_fg;
+@define-color warning_bg_color      @warning;
+@define-color warning_fg_color      @fg;
+
+@define-color active_toggle_bg_color @surface;
+@define-color active_toggle_fg_color @fg;
+
+
+/* --- variante DARK (sigue el color-scheme del sistema) ---------------------
+ * GTK enlaza `prefers-color-scheme` de este provider al setting, así que al
+ * poner GNOME en modo oscuro se redefinen estas claves y TODAS las reglas de
+ * abajo (que referencian las claves) pasan a dark. `@accent` queda igual: una
+ * sola clave sigue mandando sobre todo el azul. */
+@media (prefers-color-scheme: dark) {
+  @define-color bg          #2B2B2B;  /* fondo gris oscuro              */
+  @define-color fg          #E6E6E6;  /* texto claro                    */
+  @define-color base        #1F1F1F;  /* inputs / listas (más oscuro)   */
+  @define-color surface     #3A3A3A;  /* botones / paneles              */
+  @define-color border      #565656;
+  @define-color bevel_light #5E5E5E;  /* bisel claro (gris medio)       */
+  @define-color bevel_dark  #141414;  /* bisel oscuro                   */
+  @define-color hover       #484848;
+  @define-color insensitive_fg_color #8A8A8A;
+}
+
+
+/* ============================================================================
+ * Reglas
+ * ========================================================================== */
+
+* { border-radius: 0; }
+
+window, .background { background-color: @bg; color: @fg; }
+
+
+/* --- Title bar (navy) --- */
+headerbar, .titlebar {
+  background-color: @title;
+  background-image: none;
+  color: @title_fg;
+  border-style: none none solid none;
+  border-width: 0 0 1px 0;
+  border-color: @bevel_dark;
+  box-shadow: none;
+}
+headerbar:backdrop, .titlebar:backdrop { background-color: @title; color: @title_fg; }
+
+/* window controls (bisel) */
+windowcontrols { border-spacing: 2px; }
+windowcontrols button {
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  border-radius: 0;
+}
+windowcontrols button > image,
+windowcontrols > button > image,
+windowcontrols image { border-radius: 0; background: none; background-color: transparent; }
+windowcontrols button:hover { background-color: @hover; }
+windowcontrols button:active { border-top-color: @bevel_dark; border-left-color: @bevel_dark;
+                               border-bottom-color: @bevel_light; border-right-color: @bevel_light; }
+
+
+/* --- Botones (bisel raised) --- */
+button {
+  background-color: @surface;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  border-radius: 0;
+  box-shadow: none;
+  -gtk-icon-filter: none;
+  margin: 0;
+  padding: 3px 10px;
+}
+button:hover { background-color: @hover; }
+button:active,
+button:checked {
+  background-color: @surface;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+  box-shadow: none;
+}
+button.suggested-action   { background-color: @accent; color: @accent_fg; }
+button.destructive-action { background-color: @error;  color: @active_fg; }
+
+/* forzar esquinas rectas (por si libadwaita/GTK las redondea) */
+button, button.circular, button.image-button,
+windowcontrols button, windowcontrols button > image,
+.navigation-sidebar > row, .navigation-sidebar > child { border-radius: 0; }
+
+button.flat                 { background-color: transparent; border-color: transparent; }
+button.flat:hover           { background-color: @hover; border-color: transparent; }
+button.flat:checked         { background-color: @active; color: @active_fg; }
+
+button.toggle:checked                 { background-color: @active; color: @active_fg; }
+stackswitcher > button                { background-color: @surface; }
+stackswitcher > button.toggle:checked { background-color: @active; color: @active_fg; }
+
+
+/* --- Switch --- */
+switch {
+  background-color: @base;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+switch:checked { background-color: @accent; }
+switch > slider {
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  min-width: 16px;
+  min-height: 16px;
+}
+
+
+/* --- Check / Radio (sunken) --- */
+check, radio {
+  background-color: @base;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+check:checked, radio:checked,
+check:indeterminate, radio:indeterminate { background-color: @base; color: @fg; }
+
+
+/* --- Entradas de texto (sunken, blanco) --- */
+entry, spinbutton, searchentry {
+  background-color: @base;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+  box-shadow: none;
+  caret-color: @fg;
+}
+entry:focus-within, spinbutton:focus-within, searchentry:focus-within { border-color: @active; }
+spinbutton > text, spinbutton.vertical > text { background-color: transparent; background-image: none; color: @fg; }
+
+
+/* --- Vistas / listas (blanco) --- */
+.view, iconview, textview > text, listview, list, gridview {
+  background-color: @base;
+  color: @fg;
+}
+
+/* selección (navy) */
+.view:selected, .view:selected:focus,
+iconview:selected, iconview:selected:focus,
+flowbox > flowboxchild:selected,
+gridview > child:selected,
+columnview.view:selected, treeview.view:selected,
+row:selected,
+listview > row:selected, list > row:selected,
+dropdown popover listview > row.activatable:selected,
+combobox popover listview > row.activatable:selected,
+modelbutton:selected, modelbutton.flat:selected,
+popover.menu modelbutton:selected,
+.navigation-sidebar > row:selected,
+.sidebar > row:selected, .sidebar row:selected, stacksidebar row:selected {
+  background-color: @active;
+  background-image: none;
+  color: @active_fg;
+}
+label:selected { color: @active_fg; }
+
+
+/* --- Menús / popovers (bisel raised) --- */
+popover.background { background-color: transparent; border: none; box-shadow: none; }
+popover > contents, menu, .menu {
+  background-color: @surface;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  box-shadow: none;
+}
+popover > arrow { background-color: @surface; border: none; box-shadow: none; }
+modelbutton:hover { background-color: @active; color: @active_fg; }
+
+
+/* --- GtkNotebook (tabs clásicas) --- */
+notebook > header { background-color: @bg; border-color: @border; }
+notebook > header > tabs > tab {
+  color: @fg;
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+}
+notebook > header > tabs > tab:hover   { background-color: @hover; }
+notebook > header > tabs > tab:checked {
+  background-color: @bg;
+  border-bottom-color: @bg;
+}
+notebook > header > tabs > tab:checked.reorderable-page { background-color: @active; color: @active_fg; }
+notebook > stack:not(:only-child) { background-color: @bg; }
+
+
+/* --- Barras: GtkScale / GtkScrollbar / GtkProgressBar / GtkLevelBar --- */
+scale > trough {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+scale > trough > fill,
+scale > trough > highlight { background-color: @accent; background-image: none; border: none; }
+scale > trough > slider {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  box-shadow: none;
+}
+scale > trough > slider:hover  { background-color: @hover; }
+scale > trough > slider:active { background-color: @accent; }
+
+scrollbar { background-color: @bg; background-image: none; }
+scrollbar > range > trough > slider,
+scrollbar.overlay-indicator > range > trough > slider,
+scrollbar.overlay-indicator.dragging > range > trough > slider,
+scrollbar.overlay-indicator.hovering > range > trough > slider {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  margin: 0;
+}
+scrollbar > range > trough > slider:hover { background-color: @hover; }
+
+progressbar > trough {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+  min-height: 8px;
+}
+progressbar > trough > progress { background-color: @accent; background-image: none; border: none; }
+
+levelbar > trough {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+  min-height: 8px;
+}
+levelbar > trough > block        { background-color: @bg; border: none; }
+levelbar > trough > block.filled { background-color: @accent; }
+
+spinner { color: @accent; }
+
+/* progreso dentro de GtkEntry / GtkSpinButton */
+entry > progress > trough > progress,
+spinbutton > progress > trough > progress,
+spinbutton.vertical > text > progress > trough > progress {
+  background-color: @accent;
+  background-image: none;
+  border: none;
+  border-width: 0 0 2px;
+  border-style: solid;
+  border-color: @accent;
+}
+entry > progress > trough,
+spinbutton > progress > trough { min-height: 2px; }
+
+
+/* --- Contenedores --- */
+/* (márgenes/paddings/spacing: revertidos a los del default de GTK4) */
+
+.sidebar-pane { border-right: 1px solid @border; }
+
+
+/* --- Foco (outline) --- */
+*:focus,
+*:focus-visible,
+*:focus-within { outline-color: @active; }
+
+
+/* --- Estados semánticos --- */
+.error   { color: @error; }
+.warning { color: @warning; }
+.success { color: @success; }
+
+infobar.info > revealer > box     { background-color: @info;    color: @accent_fg; }
+infobar.question > revealer > box { background-color: @info;    color: @accent_fg; }
+infobar.warning > revealer > box  { background-color: @warning; color: @fg; }
+infobar.error > revealer > box    { background-color: @error;   color: @accent_fg; }
+
+
+/* --- PopoverMenuBar / Label / Calendar --- */
+menubar > item:selected { box-shadow: inset 0 -3px @active; color: @active; }
+label > selection { background-color: @active; color: @active_fg; }
+calendar > grid > label.day-number:checked  { background-color: alpha(@accent, 0.3); }
+calendar > grid > label.day-number:selected { background-color: @active; color: @active_fg; }

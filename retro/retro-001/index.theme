@@ -1,11 +1,11 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=atari-cx-40-imey
-Comment=Mi tema propio (GTK3) — en construcción
+Name=Retro 001
+Comment=Tema retro propio (GTK3 + GTK4, claro/dark)
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=atari-cx-40-imey
+GtkTheme=retro-001
 MetacityTheme=Adwaita
 IconTheme=Adwaita
 CursorTheme=Adwaita
