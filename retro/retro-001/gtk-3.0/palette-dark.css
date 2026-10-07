@@ -1,22 +1,20 @@
 /* ============================================================================
- * retro-001 — PALETA GTK3 · variante CLARA (fuente única)
+ * retro-001 — PALETA GTK3 · variante OSCURA (fuente única)
  * ----------------------------------------------------------------------------
- * Este archivo define SOLO colores. Lo importan:
- *   - gtk.css       (variante clara del tema)
- *   - gtk-dark.css  importa palette-dark.css (variante oscura)
- * Editá los colores SOLO acá.
+ * La importa gtk-dark.css. Mismas claves que palette.css, valores dark.
+ * @accent queda igual (una sola clave manda sobre todo el azul).
  * ========================================================================== */
 
-/* --- paleta retro --- */
-@define-color bg          #C8C4B8;  /* fondo de ventanas                 */
-@define-color fg          #1A1A1A;  /* texto                             */
-@define-color base        #E8E4DC;  /* inputs / listas                   */
-@define-color surface     #D4D0C8;  /* botones / barras / menús          */
-@define-color surface_hi  #DEDAD2;  /* hover                             */
-@define-color border      #808080;
-@define-color bevel_light #FFFFFF;  /* bisel claro                       */
-@define-color bevel_dark  #404040;  /* bisel oscuro                      */
-@define-color accent      #457B9D;  /* azul (headers, selección, foco)   */
+/* --- paleta retro (dark) --- */
+@define-color bg          #2B2B2B;
+@define-color fg          #E6E6E6;
+@define-color base        #1F1F1F;
+@define-color surface     #3A3A3A;
+@define-color surface_hi  #484848;
+@define-color border      #565656;
+@define-color bevel_light #5E5E5E;
+@define-color bevel_dark  #141414;
+@define-color accent      #457B9D;
 @define-color accent_fg   #FFFFFF;
 @define-color title       @accent;
 @define-color title_fg    #FFFFFF;
@@ -35,7 +33,7 @@
 @define-color theme_selected_bg_color @active;
 @define-color theme_selected_fg_color @active_fg;
 @define-color insensitive_bg_color    @surface;
-@define-color insensitive_fg_color    #808080;
+@define-color insensitive_fg_color    #8A8A8A;
 @define-color insensitive_base_color  @base;
 @define-color borders                 @border;
 @define-color warning_color           @warning;

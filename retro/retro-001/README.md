@@ -13,9 +13,11 @@ gtk-themes/                  # repo
     ├── index.theme          # "ficha" del tema
     ├── README.md
     ├── gtk-3.0/
-    │   ├── palette.css      # paleta GTK3 (fuente única) + alias theme_*
-    │   ├── gtk.css          # @import Adwaita + palette.css + reglas
-    │   └── gtk-dark.css     # symlink a gtk.css
+    │   ├── palette.css      # paleta clara (fuente única) + alias
+    │   ├── palette-dark.css # paleta oscura
+    │   ├── rules.css        # reglas retro compartidas (bisel, esquinas rectas)
+    │   ├── gtk.css          # @import Adwaita claro + palette + rules
+    │   └── gtk-dark.css     # @import Adwaita dark + palette-dark + rules
     ├── gtk-4.0/
     │   └── gtk.css          # GTK4/libadwaita: claro + dark automático
     └── gnome-shell/
@@ -26,8 +28,19 @@ gtk-themes/                  # repo
 
 ## GTK3
 
+Tema retro completo: base Adwaita + paleta propia + reglas (bisel 3D, esquinas
+rectas, titlebar en acento). Dos variantes:
+
+- `gtk.css` → **clara** (base Adwaita claro + `palette.css` + `rules.css`)
+- `gtk-dark.css` → **oscura** (base Adwaita dark + `palette-dark.css` + `rules.css`)
+
+GTK3 elige la variante con `gtk-application-prefer-dark-theme` (no sigue el
+`color-scheme` del sistema como GTK4).
+
 - `./install.sh` copia el tema a `~/.local/share/themes/retro-001` y setea
-  `gtk-theme` con gsettings (o elegilo en Tweaks → Apariencia → Legacy Applications).
+  `gtk-theme` con gsettings (o en Tweaks → Apariencia → Legacy Applications).
+- Ojo: el **override de usuario** `~/.config/gtk-3.0/gtk.css` (que importaba
+  Noctalia) pisa al tema. Se dejó neutralizado (backup en `gtk.css.bak.<fecha>`).
 - Hot reload (verificado): recrear el tema por nombre relee los archivos desde disco:
   ```bash
   gsettings set org.gnome.desktop.interface gtk-theme Adwaita

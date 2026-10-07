@@ -1,0 +1,224 @@
+/* ============================================================================
+ * retro-001 — REGLAS GTK3 (retro) · compartido por gtk.css y gtk-dark.css
+ * ----------------------------------------------------------------------------
+ * Bisel 3D (raised/sunken), esquinas rectas y titlebar en acento. Los colores
+ * salen de la paleta (@bg, @surface, @bevel_*, @accent…), así que cambiás la
+ * paleta y cambia todo.
+ *
+ * Va DESPUÉS del @import del base + la paleta: en GTK3, a igual especificidad,
+ * gana la última regla.
+ * ========================================================================== */
+
+/* --- esquinas rectas --- */
+* { border-radius: 0; }
+button, entry, spinbutton, headerbar, menu, menuitem, popover, popover.background,
+notebook > header, notebook > header tab, scrollbar slider, switch, switch slider,
+check, radio, progressbar trough, progressbar progress, levelbar trough, scale trough,
+scale slider, treeview, treeview.view, .view, infobar, tooltip, combobox, combobox button,
+.linked > button, .linked > entry, .linked > combobox, spinbutton button,
+headerbar button, headerbar .titlebutton, .sidebar, stacksidebar row, placessidebar row,
+.filechooser, .app-notification, calendar, colorswatch, colorswatch overlay {
+  border-radius: 0;
+}
+
+/* --- Ventanas --- */
+window, .background { background-color: @bg; color: @fg; }
+.gtkstyle-fallback  { background-color: @bg; color: @fg; }
+
+/* --- Titlebar (acento) --- */
+headerbar, .titlebar {
+  background-color: @title;
+  color: @title_fg;
+  border-style: none none solid none;
+  border-width: 0 0 1px 0;
+  border-color: @bevel_dark;
+  box-shadow: none;
+}
+headerbar:backdrop, .titlebar:backdrop { background-color: @title; color: @title_fg; }
+headerbar .title { font-weight: bold; color: @title_fg; }
+headerbar .subtitle { color: @title_fg; }
+headerbar button, headerbar .titlebutton { color: @title_fg; background-color: transparent; border-color: transparent; }
+headerbar button:hover, headerbar .titlebutton:hover { background-color: alpha(@title_fg, 0.2); }
+headerbar button:active, headerbar button:checked { background-color: alpha(black, 0.25); }
+headerbar entry, headerbar spinbutton, headerbar button.flat entry { color: @fg; }
+headerbar separator { background-color: alpha(@title_fg, 0.3); }
+
+/* --- Botones (raised) --- */
+button {
+  background-color: @surface;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  box-shadow: none;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+button:hover   { background-color: @surface_hi; }
+button:active,
+button:checked {
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+button.flat                 { background-color: transparent; border-color: transparent; }
+button.flat:hover           { background-color: @surface_hi; border-color: transparent; }
+button.flat:checked         { background-color: @active; color: @active_fg; }
+button.suggested-action     { background-color: @accent; color: @accent_fg; }
+button.destructive-action   { background-color: @error;  color: @accent_fg; }
+button:disabled             { color: @insensitive_fg_color; }
+
+/* --- Entradas (sunken) --- */
+entry, spinbutton, .entry {
+  background-color: @base;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+  box-shadow: none;
+  caret-color: @fg;
+}
+entry:focus, spinbutton:focus, .entry:focus { border-color: @accent; }
+
+/* --- Vistas / listas --- */
+.view, iconview, textview text, treeview.view, list, .list {
+  background-color: @base;
+  color: @fg;
+}
+.view:selected, treeview.view:selected, flowboxchild:selected,
+list row:selected, row:selected {
+  background-color: @active;
+  color: @active_fg;
+}
+
+/* --- Menús / popovers (raised) --- */
+menu, .menu, popover.background, popover > .background, popover > contents {
+  background-color: @surface;
+  background-image: none;
+  color: @fg;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  box-shadow: none;
+}
+popover { background-color: transparent; border: none; box-shadow: none; }
+menuitem:hover, modelbutton:hover { background-color: @accent; color: @accent_fg; }
+
+/* --- Notebook (tabs clásicas) --- */
+notebook > header { background-color: @bg; border-color: @border; }
+notebook > header tab {
+  color: @fg;
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+}
+notebook > header tab:hover   { background-color: @surface_hi; }
+notebook > header tab:checked { background-color: @bg; border-bottom-color: @bg; }
+
+/* --- Scrollbar --- */
+scrollbar { background-color: @bg; border: none; }
+scrollbar slider {
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  min-width: 10px;
+  min-height: 10px;
+}
+scrollbar slider:hover { background-color: @surface_hi; }
+
+/* --- Switch --- */
+switch {
+  background-color: @base;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+switch:checked { background-color: @accent; }
+switch slider {
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+  min-width: 18px;
+  min-height: 18px;
+}
+
+/* --- Check / Radio (sunken) --- */
+check, radio {
+  background-color: @base;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+check:checked, radio:checked { background-color: @base; color: @fg; }
+
+/* --- Barras: progress / level / scale --- */
+progressbar trough, levelbar trough, scale trough {
+  background-color: @surface;
+  background-image: none;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_dark;
+  border-left-color: @bevel_dark;
+  border-bottom-color: @bevel_light;
+  border-right-color: @bevel_light;
+}
+progressbar progress, levelbar block.filled, scale highlight { background-color: @accent; background-image: none; }
+scale slider {
+  background-color: @surface;
+  border-style: solid;
+  border-width: 1px;
+  border-top-color: @bevel_light;
+  border-left-color: @bevel_light;
+  border-bottom-color: @bevel_dark;
+  border-right-color: @bevel_dark;
+}
+scale slider:hover  { background-color: @surface_hi; }
+scale slider:active { background-color: @accent; }
+
+/* --- Toolbar / separadores --- */
+toolbar { background-color: @bg; }
+separator { background-color: @border; }
+
+/* --- Foco / selección / links --- */
+*:focus { outline-color: @active; }
+selection { background-color: @active; color: @active_fg; }
+*:link    { color: @accent; }
+
+/* --- Estados --- */
+.error   { color: @error; }
+.warning { color: @warning; }
+.success { color: @success; }
+
+infobar.info    { background-color: @info;    color: @accent_fg; }
+infobar.warning { background-color: @warning; color: @fg; }
+infobar.error   { background-color: @error;   color: @accent_fg; }

@@ -1,1 +1,10 @@
-gtk.css
+/* ============================================================================
+ * retro-001 — tema GTK3 · variante OSCURA
+ * ----------------------------------------------------------------------------
+ * Igual que gtk.css pero con base Adwaita dark + palette-dark.css.
+ * GTK la carga cuando `gtk-application-prefer-dark-theme` está activo.
+ * ========================================================================== */
+
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+@import url("palette-dark.css");
+@import url("rules.css");
