@@ -131,6 +131,7 @@ button {
   border-radius: 0;
   box-shadow: none;
   -gtk-icon-filter: none;
+  margin: 0;
   padding: 4px 10px;
 }
 button:hover   { background-color: @hover; background-image: none; box-shadow: none;
@@ -421,3 +422,47 @@ infobar.error > revealer > box    { background-color: @error;   color: @accent_f
 
 /* --- Separación sidebar / contenido (libadwaita: Nautilus, etc.) --- */
 .sidebar-pane { border-right: 1px solid @border; }
+
+
+/* --- Contenedores: sin padding --- */
+.toolbar,
+searchbar > revealer > box,
+headerbar,
+.titlebar,
+.app-notification { padding: 0; }
+
+/* --- Botones sin margen dentro de headerbar / toolbar --- */
+headerbar button,
+headerbar menubutton,
+headerbar entry,
+headerbar spinbutton,
+headerbar separator:not(.sidebar),
+.toolbar > button { margin: 0; }
+
+
+/* --- Sidebar (libadwaita): sin gaps entre filas ni contra los bordes --- */
+.navigation-sidebar > row,
+.navigation-sidebar > child,
+.navigation-sidebar > flowboxchild { margin: 0; }
+
+
+/* --- Sin spacing entre hijos de cajas (GtkBox/GtkGrid) --- */
+box,
+grid { border-spacing: 0; }
+
+
+/* --- Headerbar: botones de ventana / menú pegados a los bordes --- */
+windowcontrols { border-spacing: 0; margin: 0; }
+windowcontrols > button,
+windowcontrols button > image,
+menubutton,
+menubutton > button { margin: 0; }
+windowcontrols button { min-width: 34px; min-height: 34px; }
+headerbar > windowhandle,
+headerbar > windowhandle > box,
+headerbar > windowhandle > box > box.start,
+headerbar > windowhandle > box > box.end,
+headerbar > windowhandle > box > widget > box.start,
+headerbar > windowhandle > box > widget > box.end { padding: 0; border-spacing: 0; margin: 0; }
+
+headerbar menubutton > button { min-height: 34px; }
