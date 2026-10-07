@@ -6,6 +6,7 @@
 #   - copia cada tema a  ~/.local/share/themes/<id>          (lo lee GTK3/Shell)
 #   - instala el override GTK4 en ~/.config/gtk-4.0/gtk.css  (con backup)
 #   - setea el tema GTK3 con gsettings (o desde Tweaks)
+#   - neutraliza el override de usuario de GTK3 (~/.config/gtk-3.0/gtk.css), con backup
 #
 # Uso:
 #   ./install.sh                 # instala todos los temas del repo
@@ -111,6 +112,18 @@ main() {
     else
       stk log "Sin gsettings: seteá el tema GTK3 desde Tweaks" -v warning
     fi
+
+    # --- override de usuario de GTK3 (pisa al tema si importa otra paleta) ---
+    local GTK3_DIR="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-3.0"
+    local GTK3_CSS="${GTK3_DIR}/gtk.css"
+    local neutral='/* gnome-themes: el tema se aplica via gtk-theme; sin override de usuario */'
+    mkdir -p -- "$GTK3_DIR"
+    if [[ -e "$GTK3_CSS" || -L "$GTK3_CSS" ]] && ! cmp -s <(printf '%s\n' "$neutral") "$GTK3_CSS"; then
+      cp -aL -- "$GTK3_CSS" "${GTK3_CSS}.bak.${STAMP}" 2>/dev/null || true
+      stk log "Backup del override GTK3 -> ${GTK3_CSS}.bak.${STAMP}"
+    fi
+    printf '%s\n' "$neutral" > "$GTK3_CSS"
+    stk log "Override GTK3 neutralizado -> ${GTK3_CSS}" -v success
   fi
 
   stk log "Listo. Reiniciá las apps GTK para ver los cambios." -v success
