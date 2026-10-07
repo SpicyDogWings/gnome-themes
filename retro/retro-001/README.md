@@ -19,7 +19,9 @@ gtk-themes/                  # repo
     ├── gtk-4.0/
     │   └── gtk.css          # GTK4/libadwaita: claro + dark automático
     └── gnome-shell/
-        └── gnome-shell.css  # tema de GNOME Shell (base + overrides retro)
+        ├── gnome-shell.css        # symlink a la variante activa
+        ├── gnome-shell-light.css  # base del shell + overrides retro (clara)
+        └── gnome-shell-dark.css   # base del shell + overrides retro (oscura)
 ```
 
 ## GTK3
@@ -73,9 +75,15 @@ gsettings set org.gnome.desktop.interface color-scheme default       # claro
 
 ## GNOME Shell
 
-`gnome-shell/gnome-shell.css` es el CSS base del shell (bloque generado) **+ un
-bloque de overrides retro al final**. St/libcroco no soporta `@define-color`,
-así que los colores van literales en el bloque de overrides.
+El tema de shell viene en **dos variantes** (St/libcroco **no** soporta `@media`
+ni `@define-color`, así que no se pueden tener claro+oscuro en un solo archivo):
+
+- `gnome-shell/gnome-shell-light.css` → base del shell + overrides retro (clara)
+- `gnome-shell/gnome-shell-dark.css` → ídem (oscura)
+- `gnome-shell/gnome-shell.css` → **symlink** a la activa (por defecto, clara)
+
+El `border-radius` del base está forzado a `0` (esquinas rectas). Los overrides
+(con la paleta literal) van al final de cada archivo.
 
 Necesita la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell, o):
 
@@ -85,11 +93,11 @@ GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
   gsettings set org.gnome.shell.extensions.user-theme name retro-001
 ```
 
-Regenerar el base tras un update del shell:
+Regenerar el base tras un update del shell (y volver a forzar `border-radius: 0`):
 
 ```bash
 gresource extract /usr/share/gnome-shell/gnome-shell-theme.gresource \
-  /org/gnome/shell/theme/gnome-shell-dark.css
+  /org/gnome/shell/theme/gnome-shell-light.css   # o -dark.css
 ```
 
 ## Notas

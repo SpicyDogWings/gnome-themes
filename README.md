@@ -52,21 +52,31 @@ gsettings set org.gnome.desktop.interface color-scheme default       # claro
 
 ### Shell de GNOME
 
-`retro-001` incluye tema de **GNOME Shell** (`gnome-shell/gnome-shell.css`).
-Necesita la extensión **User Themes** habilitada. Para activarlo:
+`retro-001` incluye tema de **GNOME Shell**, en dos variantes:
 
-- Fácil: **Tweaks → Apariencia → Shell**, elegí `retro-001`.
-- O por comando (el schema vive en la carpeta de la extensión):
+- `gnome-shell/gnome-shell.css` → **symlink** a la activa (por defecto, clara).
+- `gnome-shell/gnome-shell-light.css` y `gnome-shell/gnome-shell-dark.css`.
+
+> El motor CSS del shell (St/libcroco) **no** soporta `@media` ni
+> `@define-color`, así que el tema de shell es de **una sola variante** — no puede
+> tener claro+oscuro en un archivo como el de GTK4. La variante se elige con el symlink.
+
+Requiere la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell, o):
 
 ```bash
 EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
 GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
   gsettings set org.gnome.shell.extensions.user-theme name retro-001
-# volver al default:
-#   ... gsettings set org.gnome.shell.extensions.user-theme name ''
 ```
 
-El tema de Shell se toma de `~/.local/share/themes/retro-001/` (lo deja `install.sh`).
+Cambiar de variante (ej. a oscura) y forzar la recarga:
+
+```bash
+cd ~/.local/share/themes/retro-001/gnome-shell
+ln -sfn gnome-shell-dark.css gnome-shell.css
+GSETTINGS_SCHEMA_DIR="$EXT/schemas" gsettings set org.gnome.shell.extensions.user-theme name ''
+GSETTINGS_SCHEMA_DIR="$EXT/schemas" gsettings set org.gnome.shell.extensions.user-theme name retro-001
+```
 
 ## Estructura
 
@@ -81,7 +91,7 @@ gnome-themes/
         ├── README.md        # detalle del tema
         ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
         ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark)
-        └── gnome-shell/     # tema de GNOME Shell (base + overrides retro)
+        └── gnome-shell/     # tema de GNOME Shell (clara/oscura + symlink)
 ```
 
 ## Notas
