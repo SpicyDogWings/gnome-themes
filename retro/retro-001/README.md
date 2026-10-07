@@ -82,6 +82,10 @@ ni `@define-color`, así que no se pueden tener claro+oscuro en un solo archivo)
 - `gnome-shell/gnome-shell-dark.css` → ídem (oscura)
 - `gnome-shell/gnome-shell.css` → **symlink** a la activa (por defecto, clara)
 
+Para que Tweaks liste la variante oscura como una entrada aparte, existe el tema
+`retro-001-dark/` (solo-shell) cuyo `gnome-shell/gnome-shell.css` apunta acá:
+`retro-001-dark/gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css`.
+
 El `border-radius` del base está forzado a `0` (esquinas rectas). Los overrides
 (con la paleta literal) van al final de cada archivo.
 

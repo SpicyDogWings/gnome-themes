@@ -52,30 +52,26 @@ gsettings set org.gnome.desktop.interface color-scheme default       # claro
 
 ### Shell de GNOME
 
-`retro-001` incluye tema de **GNOME Shell**, en dos variantes:
+El tema de shell viene en **dos entradas separadas**, porque Tweaks lista un tema
+de shell **por carpeta** y el motor CSS del shell (St/libcroco) **no** soporta
+`@media` ni `@define-color` (no se puede tener claro+oscuro en un archivo como el
+de GTK4):
 
-- `gnome-shell/gnome-shell.css` → **symlink** a la activa (por defecto, clara).
-- `gnome-shell/gnome-shell-light.css` y `gnome-shell/gnome-shell-dark.css`.
+| Carpeta | Shell |
+|---------|-------|
+| `retro/retro-001/` | clara |
+| `retro/retro-001-dark/` | oscura |
 
-> El motor CSS del shell (St/libcroco) **no** soporta `@media` ni
-> `@define-color`, así que el tema de shell es de **una sola variante** — no puede
-> tener claro+oscuro en un archivo como el de GTK4. La variante se elige con el symlink.
+`retro-001-dark/` es **solo-shell**: su `gnome-shell/gnome-shell.css` es un symlink
+a `retro-001/gnome-shell/gnome-shell-dark.css`.
 
-Requiere la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell, o):
+Requiere la extensión **User Themes**. Elegí el tema en
+**Tweaks → Apariencia → Shell** (`retro-001` o `retro-001-dark`). O por comando:
 
 ```bash
 EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
 GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
-  gsettings set org.gnome.shell.extensions.user-theme name retro-001
-```
-
-Cambiar de variante (ej. a oscura) y forzar la recarga:
-
-```bash
-cd ~/.local/share/themes/retro-001/gnome-shell
-ln -sfn gnome-shell-dark.css gnome-shell.css
-GSETTINGS_SCHEMA_DIR="$EXT/schemas" gsettings set org.gnome.shell.extensions.user-theme name ''
-GSETTINGS_SCHEMA_DIR="$EXT/schemas" gsettings set org.gnome.shell.extensions.user-theme name retro-001
+  gsettings set org.gnome.shell.extensions.user-theme name retro-001-dark
 ```
 
 ## Estructura
@@ -86,12 +82,15 @@ gnome-themes/
 ├── stk                      # binario STK vendoreado (logging del instalador)
 ├── Orchis/                  # (gitignored) dependencia de terceros
 └── retro/
-    └── retro-001/           # el tema
-        ├── index.theme      # "ficha" del tema
-        ├── README.md        # detalle del tema
-        ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
-        ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark)
-        └── gnome-shell/     # tema de GNOME Shell (clara/oscura + symlink)
+    ├── retro-001/           # tema completo (GTK3 + GTK4 + shell clara)
+    │   ├── index.theme      # "ficha" del tema
+    │   ├── README.md        # detalle del tema
+    │   ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
+    │   ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark automático)
+    │   └── gnome-shell/     # tema de Shell (clara/oscura)
+    └── retro-001-dark/      # solo shell oscura (entrada aparte en Tweaks)
+        ├── index.theme
+        └── gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css
 ```
 
 ## Notas
