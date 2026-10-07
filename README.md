@@ -10,7 +10,7 @@ Probado en **GNOME Shell 50.5 / GTK 4.22**.
 
 | Tema | Estilo | GTK3 | GTK4 | Shell | Estado |
 |------|--------|:----:|:----:|:-----:|--------|
-| [`retro-001`](retro/retro-001/) | Retro OS · bisel 3D · beige + acento azul · dark automático | ✅ | ✅ | ⏳ | usable |
+| [`retro-001`](retro/retro-001/) | Retro OS · bisel 3D · beige + acento azul · dark automático | ✅ | ✅ | ✅ | usable |
 
 > `Orchis/` (gitignored) es una dependencia de terceros, **no** es un tema propio.
 
@@ -52,8 +52,21 @@ gsettings set org.gnome.desktop.interface color-scheme default       # claro
 
 ### Shell de GNOME
 
-El tema de Shell necesita la extensión **User Themes** habilitada y un
-`gnome-shell/gnome-shell.css` dentro del tema. Para `retro-001` está en camino.
+`retro-001` incluye tema de **GNOME Shell** (`gnome-shell/gnome-shell.css`).
+Necesita la extensión **User Themes** habilitada. Para activarlo:
+
+- Fácil: **Tweaks → Apariencia → Shell**, elegí `retro-001`.
+- O por comando (el schema vive en la carpeta de la extensión):
+
+```bash
+EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
+GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
+  gsettings set org.gnome.shell.extensions.user-theme name retro-001
+# volver al default:
+#   ... gsettings set org.gnome.shell.extensions.user-theme name ''
+```
+
+El tema de Shell se toma de `~/.local/share/themes/retro-001/` (lo deja `install.sh`).
 
 ## Estructura
 
@@ -68,7 +81,7 @@ gnome-themes/
         ├── README.md        # detalle del tema
         ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
         ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark)
-        └── gnome-shell/     # tema de Shell (pendiente)
+        └── gnome-shell/     # tema de GNOME Shell (base + overrides retro)
 ```
 
 ## Notas

@@ -1,6 +1,6 @@
 # retro-001
 
-Tema propio. Estado: **GTK3 hecho (no aplicado)**, **GTK4 aplicado** (claro + dark automático).
+Tema propio. Estado: **GTK3 hecho (no aplicado)**, **GTK4 aplicado** (claro + dark automático), **Shell incluido**.
 
 ## Estructura
 
@@ -16,8 +16,10 @@ gtk-themes/                  # repo
     │   ├── palette.css      # paleta GTK3 (fuente única) + alias theme_*
     │   ├── gtk.css          # @import Adwaita + palette.css + reglas
     │   └── gtk-dark.css     # symlink a gtk.css
-    └── gtk-4.0/
-        └── gtk.css          # GTK4/libadwaita: claro + dark automático
+    ├── gtk-4.0/
+    │   └── gtk.css          # GTK4/libadwaita: claro + dark automático
+    └── gnome-shell/
+        └── gnome-shell.css  # tema de GNOME Shell (base + overrides retro)
 ```
 
 ## GTK3
@@ -69,7 +71,28 @@ gsettings set org.gnome.desktop.interface color-scheme prefer-dark   # dark
 gsettings set org.gnome.desktop.interface color-scheme default       # claro
 ```
 
+## GNOME Shell
+
+`gnome-shell/gnome-shell.css` es el CSS base del shell (bloque generado) **+ un
+bloque de overrides retro al final**. St/libcroco no soporta `@define-color`,
+así que los colores van literales en el bloque de overrides.
+
+Necesita la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell, o):
+
+```bash
+EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
+GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
+  gsettings set org.gnome.shell.extensions.user-theme name retro-001
+```
+
+Regenerar el base tras un update del shell:
+
+```bash
+gresource extract /usr/share/gnome-shell/gnome-shell-theme.gresource \
+  /org/gnome/shell/theme/gnome-shell-dark.css
+```
+
 ## Notas
 
 - GTK4 se edita en `gtk-4.0/gtk.css` (colores con nombres libadwaita).
-- El shell de GNOME es aparte (`gnome-shell/` + extensión User Themes).
+- El tema de Shell se edita al final de `gnome-shell/gnome-shell.css` (bloque "OVERRIDES").
