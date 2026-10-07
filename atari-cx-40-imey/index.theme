@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=atari-cx-40-imey
+Comment=Mi tema propio (GTK3) — en construcción
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=atari-cx-40-imey
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu

@@ -1,0 +1,111 @@
+/* ============================================================================
+ * atari-cx-40-imey — tema GTK3
+ * ----------------------------------------------------------------------------
+ * CÓMO ESTÁ ARMADO:
+ *   1) @import de Adwaita  -> base completa, así ningún widget se rompe.
+ *   2) TU PALETA          -> los colores, en un solo lugar.
+ *   3) ALIAS de apps       -> nombres que las aplicaciones esperan de fábrica.
+ *   4) REGLAS              -> tu diseño real, encima de la base.
+ *
+ * La regla de oro de CSS en GTK3: si dos reglas son igual de específicas,
+ * GANA LA ÚLTIMA. Por eso lo tuyo va SIEMPRE después del @import.
+ * ========================================================================== */
+
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+
+
+/* ============================================================================
+ * 1+2) PALETA  —  fuente única en palette.css (colores + alias)
+ *        El mismo archivo se usa a nivel usuario (prioridad 800).
+ * ========================================================================== */
+
+@import url("palette.css");
+
+
+/* ============================================================================
+ * 3) TU DISEÑO  —  acá empieza lo tuyo
+ * ========================================================================== */
+
+/* --- Ventanas y fondo general --- */
+.background        { background-color: @bg; color: @fg; }
+window.background  { background-color: @bg; }
+.gtkstyle-fallback { background-color: @bg; color: @fg; }
+
+/* --- Barra de título (headerbar) --- */
+headerbar,
+.titlebar {
+  background-color: @surface;
+  color: @fg;
+  border-color: @border;
+  box-shadow: none;
+}
+
+/* --- Botones --- */
+button {
+  background-color: @surface;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 8px;
+  padding: 5px 12px;
+  box-shadow: none;
+}
+button:hover  { background-color: @surface_hi; }
+button:active,
+button:checked { background-color: @accent; color: @accent_fg; }
+
+button.suggested-action { background-color: @accent; color: @accent_fg; }
+button.destructive-action { background-color: @error; color: @accent_fg; }
+
+/* --- Campos de texto --- */
+entry,
+spinbutton,
+.entry {
+  background-color: @base;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 8px;
+  caret-color: @accent;
+}
+entry:focus,
+.entry:focus { border-color: @accent; }
+
+/* --- Vistas: listas, iconos, texto --- */
+.view,
+iconview,
+textview text,
+treeview.view {
+  background-color: @base;
+  color: @fg;
+}
+.view:selected,
+treeview.view:selected,
+flowboxchild:selected {
+  background-color: @accent;
+  color: @accent_fg;
+}
+
+/* --- Menús y popovers --- */
+menu,
+.menu,
+popover,
+popover.background {
+  background-color: @surface;
+  color: @fg;
+  border: 1px solid @border;
+  border-radius: 10px;
+}
+menuitem:hover,
+modelbutton:hover { background-color: alpha(@accent, 0.30); }
+
+/* --- Pestañas (notebook) --- */
+notebook > header        { background-color: @bg; }
+notebook > header tab:checked { color: @accent; }
+
+/* --- Barra de desplazamiento --- */
+scrollbar          { background-color: @bg; }
+scrollbar slider   { background-color: @border; border-radius: 8px; min-width: 8px; min-height: 8px; }
+scrollbar slider:hover { background-color: @accent; }
+
+/* --- Selección de texto y links --- */
+selection { background-color: @accent; color: @accent_fg; }
+*:link    { color: @accent; }

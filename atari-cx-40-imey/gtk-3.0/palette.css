@@ -1,0 +1,45 @@
+/* ============================================================================
+ * atari-cx-40-imey — PALETA (fuente única de colores)
+ * ----------------------------------------------------------------------------
+ * Este archivo es la ÚNICA fuente de la paleta:
+ *   - El tema lo importa desde gtk.css  (prioridad de tema, 200)
+ *   - A nivel usuario vive como ~/.config/gtk-3.0/noctalia.css (symlink a este
+ *     archivo), que corre a prioridad USER (800): le gana al acento del sistema
+ *
+ * Editá los colores SOLO acá.
+ * ========================================================================== */
+
+/* --- paleta --- */
+@define-color bg         #1C2321;  /* fondo de ventanas                 */
+@define-color fg         #657574;  /* texto principal                   */
+@define-color base       #181825;  /* fondo de campos de texto / listas */
+@define-color surface    #313244;  /* barras, botones, menús            */
+@define-color surface_hi #45475a;  /* hover                             */
+@define-color border     #45475a;  /* bordes                            */
+@define-color accent     #65DCD5;  /* color de acento / selección       */
+@define-color accent_fg  #1e1e2e;  /* texto sobre el acento             */
+@define-color success    #a6e3a1;
+@define-color warning    #f9e2af;
+@define-color error      #f38ba8;
+
+/* --- nombres que GTK y las apps esperan --- */
+@define-color theme_bg_color           @bg;
+@define-color theme_fg_color           @fg;
+@define-color theme_base_color         @base;
+@define-color theme_text_color         @fg;
+@define-color theme_selected_bg_color  @accent;
+@define-color theme_selected_fg_color  @accent_fg;
+@define-color insensitive_bg_color     @bg;
+@define-color insensitive_fg_color     mix(@fg, @bg, 0.5);
+@define-color insensitive_base_color   @base;
+@define-color borders                  @border;
+@define-color warning_color            @warning;
+@define-color error_color              @error;
+@define-color success_color            @success;
+@define-color content_view_bg          @base;
+@define-color text_view_bg             @base;
+
+/* --- acento con nombres estilo libadwaita (por si algo los consulta) --- */
+@define-color accent_color    @accent;
+@define-color accent_bg_color @accent;
+@define-color accent_fg_color @accent_fg;
