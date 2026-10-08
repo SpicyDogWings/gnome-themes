@@ -39,6 +39,16 @@ cd gnome-themes
 
 Después, reiniciá las apps GTK (Nautilus, etc.) para ver los cambios.
 
+### Empaquetar (distribuir)
+
+```bash
+./pack.sh                 # todos los temas -> dist/<id>.zip y dist/<id>.tar.gz
+./pack.sh <dir> [<dir>…]  # solo esos
+```
+
+Cada paquete lleva la **carpeta del tema en la raíz** y los **symlinks resueltos**
+(autocontenido). `dist/` está en `.gitignore`.
+
 ### Modo oscuro (automático)
 
 El override GTK4 trae la variante clara por defecto y un bloque
@@ -79,6 +89,7 @@ GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
 ```
 gnome-themes/
 ├── install.sh               # instalador (copia a ~/.local/share + override GTK4 + gsettings)
+├── pack.sh                  # empaqueta los temas en dist/ (.zip / .tar.gz)
 ├── stk                      # binario STK vendoreado (logging del instalador)
 ├── Orchis/                  # (gitignored) dependencia de terceros
 └── retro/
