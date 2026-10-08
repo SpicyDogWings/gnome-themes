@@ -141,7 +141,7 @@ windowcontrols { border-spacing: 2px; }
 windowcontrols button {
   background-color: @surface;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -162,7 +162,7 @@ button {
   background-image: none;
   color: @fg;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -204,7 +204,7 @@ stackswitcher > button.toggle:checked { background-color: @active; color: @activ
 switch {
   background-color: @base;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;
@@ -214,7 +214,7 @@ switch:checked { background-color: @accent; }
 switch > slider {
   background-color: @surface;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -230,7 +230,7 @@ check, radio {
   background-image: none;
   color: @fg;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;
@@ -246,7 +246,7 @@ entry, spinbutton, searchentry {
   background-image: none;
   color: @fg;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;
@@ -292,7 +292,7 @@ popover > contents, menu, .menu {
   background-image: none;
   color: @fg;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -310,7 +310,7 @@ notebook > header > tabs > tab {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -330,7 +330,7 @@ scale > trough {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;
@@ -342,7 +342,7 @@ scale > trough > slider {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -360,7 +360,7 @@ scrollbar.overlay-indicator.hovering > range > trough > slider {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_light;
   border-left-color: @bevel_light;
   border-bottom-color: @bevel_dark;
@@ -373,7 +373,7 @@ progressbar > trough {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;
@@ -386,7 +386,7 @@ levelbar > trough {
   background-color: @surface;
   background-image: none;
   border-style: solid;
-  border-width: 1px;
+  border-width: 2px;
   border-top-color: @bevel_dark;
   border-left-color: @bevel_dark;
   border-bottom-color: @bevel_light;

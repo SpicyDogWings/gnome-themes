@@ -206,7 +206,7 @@ stage {
   margin: 4px;
   background-color: #47474c;
   box-shadow: 0 1px 2px 0 transparent;
-  border: 1px solid transparent; }
+  border: 2px solid transparent; }
 
 .quick-toggle-menu, .message, .events-button,
 .world-clocks-button,
@@ -248,7 +248,7 @@ stage {
     background-color: st-darken(#47474c, 3%); }
 
 .calendar, .datemenu-today-button {
-  border: 1px solid transparent !important;
+  border: 2px solid transparent !important;
   background-color: transparent;
   border-color: transparent;
   box-shadow: none; }
@@ -375,7 +375,7 @@ StEntry {
 
 .dash-label, .window-caption, .screenshot-ui-tooltip {
   background-color: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   color: #ffffff;
   border-radius: 0;
   padding: 6px 12px;
@@ -428,7 +428,7 @@ StEntry {
 #LookingGlassDialog, .screenshot-ui-panel, .workspace-switcher, .switcher-list, .resize-popup, .osd-window {
   color: #ffffff;
   background-color: #2e2e33;
-  border: 1px solid rgba(255, 255, 255, 0.02);
+  border: 2px solid rgba(255, 255, 255, 0.02);
   border-radius: 0;
   padding: 12px; }
 
@@ -937,7 +937,7 @@ StScrollBar {
   padding: 6px;
   background-color: #36363a;
   border-radius: 0;
-  border: 1px solid #424247;
+  border: 2px solid #424247;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
 
 .popup-menu-item {
@@ -985,7 +985,7 @@ StScrollBar {
 .popup-sub-menu {
   border-radius: 0;
   margin-bottom: 6px;
-  border: 1px solid transparent;
+  border: 2px solid transparent;
   background-color: #56565c; }
   .popup-sub-menu .popup-menu-item {
     border-radius: 0;
@@ -1317,7 +1317,7 @@ StScrollBar {
   padding: 0 18px;
   border-radius: 0;
   color: #ffffff;
-  border: 1px solid transparent; }
+  border: 2px solid transparent; }
   .message-media-control:hover {
     background-color: #5b5b62;
     color: #ffffff; }
@@ -2716,7 +2716,7 @@ StScrollBar {
     color: #fafafb;
     background-color: #46464e;
     border-radius: 0;
-    border: 1px solid transparent; }
+    border: 2px solid transparent; }
   .workspace-thumbnails .placeholder {
     background-image: url("resource:///org/gnome/shell/theme/workspace-placeholder.svg");
     background-size: contain;
@@ -2747,7 +2747,7 @@ StScrollBar {
 
 .select-area-rubberband {
   background-color: st-transparentize(-st-accent-color, 0.7);
-  border: 1px solid -st-accent-color; }
+  border: 2px solid -st-accent-color; }
 
 .user-icon {
   background-size: contain;
@@ -2781,7 +2781,7 @@ StScrollBar {
 /* Tiled window previews */
 .tile-preview {
   background-color: st-transparentize(-st-accent-color, 0.5);
-  border: 1px solid -st-accent-color; }
+  border: 2px solid -st-accent-color; }
 
 /* On-screen Keyboard */
 #keyboard {
@@ -2976,7 +2976,7 @@ StScrollBar {
   background-color: #2e2e33;
   color: #ffffff;
   border-radius: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.1);
   padding: 12px; }
   #LookingGlassPropertyInspector .lg-obj-inspector-title {
     spacing: 4px; }
@@ -3351,15 +3351,15 @@ StScrollBar {
 #panel {
   background-color: #457B9D;
   color: #ffffff;
-  border-bottom: 1px solid #141414;
-  box-shadow: inset 0 -1px 0 #141414;
+  border-bottom: 2px solid #141414;
+  box-shadow: inset 0 -2px 0 #141414;
 }
 #panel:overview, #panel.unlock-screen, #panel.login-screen {
   background-color: transparent;
   border-bottom: none;
   box-shadow: none;
 }
-#panel .panel-button { color: #ffffff; border: 1px solid transparent; box-shadow: none; }
+#panel .panel-button { color: #ffffff; border: 2px solid transparent; box-shadow: none; }
 #panel .panel-button:hover, #panel .panel-button:focus { background-color: rgba(255, 255, 255, 0.18); box-shadow: none; }
 #panel .panel-button:active, #panel .panel-button:checked { background-color: rgba(0, 0, 0, 0.25); box-shadow: none; }
 #panel .panel-button.clock-display { background: none; border: none; box-shadow: none; }
@@ -3370,7 +3370,7 @@ StScrollBar {
 .popup-menu-content, .candidate-popup-content {
   background-color: #3A3A3A;
   color: #E6E6E6;
-  border: 1px solid #141414;
+  border: 2px solid #141414;
   border-top-color: #5E5E5E;
   border-left-color: #5E5E5E;
   box-shadow: none;
@@ -3379,7 +3379,7 @@ StScrollBar {
 .popup-menu-item:hover, .popup-menu-item:selected, .popup-menu-item:checked { background-color: #457B9D; color: #ffffff; }
 .popup-menu-item:active { background-color: #3E6E8C; color: #ffffff; }
 .popup-inactive-menu-item { color: #E6E6E6; }
-.popup-sub-menu { background-color: #1F1F1F; border: 1px solid #141414; }
+.popup-sub-menu { background-color: #1F1F1F; border: 2px solid #141414; }
 .popup-sub-menu .popup-menu-item:hover, .popup-sub-menu .popup-menu-item:selected,
 .popup-sub-menu .popup-menu-item:checked { background-color: #457B9D; color: #ffffff; }
 .popup-separator-menu-item .popup-separator-menu-item-separator { background-color: #565656; }
@@ -3388,7 +3388,7 @@ StScrollBar {
 .button, .icon-button {
   color: #E6E6E6;
   background-color: #3A3A3A;
-  border: 1px solid #141414;
+  border: 2px solid #141414;
   border-top-color: #5E5E5E;
   border-left-color: #5E5E5E;
   box-shadow: none;
@@ -3400,20 +3400,20 @@ StScrollBar {
 .button:focus, .icon-button:focus { box-shadow: inset 0 0 0 2px #5E9BC0; }
 
 /* --- Quick settings --- */
-.quick-toggle, .quick-toggle-menu, .quick-settings { background-color: #3A3A3A; border: 1px solid #141414; }
+.quick-toggle, .quick-toggle-menu, .quick-settings { background-color: #3A3A3A; border: 2px solid #141414; }
 .quick-toggle:checked { background-color: #457B9D; color: #ffffff; }
 
 /* --- Sliders / switches --- */
-.slider { background-color: #1F1F1F; border: 1px solid #141414; }
+.slider { background-color: #1F1F1F; border: 2px solid #141414; }
 .slider:hover { background-color: #457B9D; }
-.toggle-switch { background-color: #1F1F1F; border: 1px solid #141414; }
+.toggle-switch { background-color: #1F1F1F; border: 2px solid #141414; }
 .toggle-switch:checked { background-color: #457B9D; }
 
 /* --- Entradas --- */
 StEntry, .search-entry, .entry {
   background-color: #1F1F1F;
   color: #E6E6E6;
-  border: 1px solid #141414;
+  border: 2px solid #141414;
   border-top-color: #5E5E5E;
   border-left-color: #5E5E5E;
   box-shadow: none;
@@ -3423,7 +3423,7 @@ StEntry:focus, .search-entry:focus { border-color: #457B9D; }
 /* --- OSD --- */
 .osd-window, .osd-monitor-label {
   background-color: #2B2B2B;
-  border: 1px solid #141414;
+  border: 2px solid #141414;
   border-top-color: #5E5E5E;
   border-left-color: #5E5E5E;
   box-shadow: none;
@@ -3432,29 +3432,29 @@ StEntry:focus, .search-entry:focus { border-color: #457B9D; }
 
 /* --- Notificaciones --- */
 .notification, .message, .message-list { background-color: #3A3A3A; }
-.message { border: 1px solid #141414; border-top-color: #5E5E5E; border-left-color: #5E5E5E; box-shadow: none; }
+.message { border: 2px solid #141414; border-top-color: #5E5E5E; border-left-color: #5E5E5E; box-shadow: none; }
 .message .message-header .message-close-button { background-color: #3A3A3A; }
 
 /* --- Diálogos modales --- */
 .modal-dialog, .end-session-dialog, .run-dialog, .prompt-dialog {
   background-color: #2B2B2B;
-  border: 1px solid #141414;
+  border: 2px solid #141414;
   border-top-color: #5E5E5E;
   border-left-color: #5E5E5E;
   box-shadow: none;
 }
 
 /* --- Dash / overview --- */
-.dash-label { background-color: #2B2B2B; border: 1px solid #141414; border-top-color: #5E5E5E; }
+.dash-label { background-color: #2B2B2B; border: 2px solid #141414; border-top-color: #5E5E5E; }
 .overview-tile:hover .overview-icon, .grid-search-result:hover .overview-icon { background-color: rgba(69, 123, 157, 0.35); }
 .overview-tile:focus .overview-icon, .overview-tile:selected .overview-icon { background-color: #457B9D; }
 
 /* --- Búsqueda --- */
-.search-section-content, .search-section .search-section-content { background-color: #3A3A3A; border: 1px solid #141414; }
+.search-section-content, .search-section .search-section-content { background-color: #3A3A3A; border: 2px solid #141414; }
 .list-search-result:hover, .list-search-result:focus { background-color: #457B9D; color: #ffffff; }
 
 /* --- Switchers --- */
-.switcher-list { background-color: #3A3A3A; border: 1px solid #141414; border-top-color: #5E5E5E; box-shadow: none; }
+.switcher-list { background-color: #3A3A3A; border: 2px solid #141414; border-top-color: #5E5E5E; box-shadow: none; }
 .switcher-list .item-box:selected { background-color: #457B9D; color: #ffffff; }
 .workspace-thumbnail-indicator { border: 2px solid #457B9D; }
 
