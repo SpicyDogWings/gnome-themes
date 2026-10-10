@@ -22,6 +22,7 @@ Probado en **GNOME Shell 50.5 / GTK 4.22**.
 - **GNOME** (probado en Shell 50.5) con GTK 4.22 / libadwaita.
 - `gsettings` — para setear el tema GTK3.
 - `stk` — el instalador usa el binario **vendoreado** `./stk`, no hace falta instalarlo.
+- `python3` + `gresource` — solo para regenerar los CSS del shell (`minimal/build-shell.py`).
 
 ## Instalar
 
@@ -41,6 +42,13 @@ cd gnome-themes
    (o elegilo en *Tweaks → Apariencia → Legacy Applications*).
 
 Después, reiniciá las apps GTK (Nautilus, etc.) para ver los cambios.
+
+> **Ojo — un solo override GTK4.** El override de GTK4 es **un archivo**
+> (`~/.config/gtk-4.0/gtk.css`). `./install.sh` sin argumentos instala **todos**
+> los temas y deja el override del **último** que encuentre. Si tenés más de un
+> tema completo (`retro-001`, `minimal-001`, `minimal-001-transparent`), pasá el
+> tema explícito: `./install.sh minimal/minimal-001`. El **shell** sí convive: se
+> elige cualquiera de las entradas en Tweaks.
 
 ### Empaquetar (distribuir)
 
@@ -65,27 +73,38 @@ gsettings set org.gnome.desktop.interface color-scheme default       # claro
 
 ### Shell de GNOME
 
-El tema de shell viene en **dos entradas separadas**, porque Tweaks lista un tema
-de shell **por carpeta** y el motor CSS del shell (St/libcroco) **no** soporta
-`@media` ni `@define-color` (no se puede tener claro+oscuro en un archivo como el
-de GTK4):
+El tema de shell viene en **una entrada por carpeta** (Tweaks lista un tema de
+shell por carpeta) y el motor CSS del shell (St/libcroco) **no** soporta `@media`
+ni `@define-color`, así que **no** se puede tener claro+oscuro en un solo archivo
+(como el de GTK4). Por eso cada variante es un archivo, y las entradas `-dark` son
+**solo-shell** (un symlink al `gnome-shell-dark.css` del tema):
 
 | Carpeta | Shell |
 |---------|-------|
-| `retro/retro-001/` | clara |
-| `retro/retro-001-dark/` | oscura |
-
-`retro-001-dark/` es **solo-shell**: su `gnome-shell/gnome-shell.css` es un symlink
-a `retro-001/gnome-shell/gnome-shell-dark.css`.
+| `retro/retro-001/` | clara (retro) |
+| `retro/retro-001-dark/` | oscura (retro) |
+| `minimal/minimal-001/` | clara · sólida |
+| `minimal/minimal-001-dark/` | oscura · sólida |
+| `minimal/minimal-001-transparent/` | clara · translúcida |
+| `minimal/minimal-001-transparent-dark/` | oscura · translúcida |
 
 Requiere la extensión **User Themes**. Elegí el tema en
-**Tweaks → Apariencia → Shell** (`retro-001` o `retro-001-dark`). O por comando:
+**Tweaks → Apariencia → Shell**. O por comando:
 
 ```bash
 EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
 GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
-  gsettings set org.gnome.shell.extensions.user-theme name retro-001-dark
+  gsettings set org.gnome.shell.extensions.user-theme name minimal-001-dark
 ```
+
+Los `gnome-shell.css` de `minimal` se **generan** con `minimal/build-shell.py`:
+
+```bash
+./minimal/build-shell.py
+```
+
+Extrae el base del `gnome-shell-theme.gresource`, fuerza radio 6px, hornea el
+accent del sistema a gris y agrega los overrides (genera sólida + transparente).
 
 ## Estructura
 
@@ -106,6 +125,7 @@ gnome-themes/
 │       ├── index.theme
 │       └── gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css
 └── minimal/
+    ├── build-shell.py       # genera los gnome-shell.css (sólida + transparente)
     ├── minimal-001/         # tema completo SÓLIDO (GTK3 + GTK4 + shell clara)
     │   ├── index.theme
     │   ├── README.md

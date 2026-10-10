@@ -121,11 +121,12 @@ GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
 # o: ... name minimal-001-dark                                                # oscura
 ```
 
-Regenerar el base tras un update del shell (y volver a forzar `border-radius: 6px`):
+Regenerar los CSS del shell (tras un update del shell). El builder toma el base del
+`gnome-shell-theme.gresource`, le fuerza radio **6px**, hornea el accent del sistema
+a gris y agrega los overrides — genera la versión sólida y la transparente:
 
 ```bash
-gresource extract /usr/share/gnome-shell/gnome-shell-theme.gresource \
-  /org/gnome/shell/theme/gnome-shell-light.css   # o -dark.css
+./minimal/build-shell.py
 ```
 
 ## Notas

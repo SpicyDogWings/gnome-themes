@@ -9,9 +9,12 @@
  * (GNOME loads its default theme underneath the user theme).
  * St does NOT support @media nor @define-color: each variant is a SINGLE file.
  *
- * Base extracted with:
+ * Generado por minimal/build-shell.py — no editar a mano (salvo el bloque de
+ * overrides de abajo, que vive en ese script).
+ *
+ * Base extraída con:
  *   gresource extract /usr/share/gnome-shell/gnome-shell-theme.gresource \
- *     /org/gnome/shell/theme/gnome-shell-<light|dark>.css
+ *     /org/gnome/shell/theme/<light|dark>.css
  * ========================================================================== */
 /* This stylesheet is generated, DO NOT EDIT */
 /* Copyright 2009, 2015 Red Hat, Inc.
@@ -3342,7 +3345,7 @@ StScrollBar {
 /* ============================================================================
  * minimal-001 — SHELL OVERRIDES · DARK (mono)
  * ----------------------------------------------------------------------------
- * Last in the file: on equal specificity the last rule wins.
+ * Estas reglas se generan desde minimal/build-shell.py.
  * Palette (literal, St has no @define-color):
  *   surface #1a1a1a · bg #0d0d0d · base #131313 · accent #373737
  *   border #2e2e2e · fg #e9e9e9 · fg_dim #8b8b8b
