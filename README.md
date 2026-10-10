@@ -1,8 +1,9 @@
 # gnome-themes
 
-Colección de temas **GTK / GNOME** propios con estética **retro**: bisel 3D
-(raised/sunken), esquinas rectas y paleta beige/oscura. Incluyen **variante
-clara y oscura automática** (sigue el modo oscuro del sistema).
+Colección de temas **GTK / GNOME** propios. Dos estéticas: **retro** (bisel 3D,
+esquinas rectas, paleta beige/oscura) y **minimal** (flat, esquinas chicas de
+6px, casi monocromo, dark casi negro). Incluyen **variante clara y oscura
+automática** (GTK4 y Shell siguen el modo oscuro del sistema).
 
 Probado en **GNOME Shell 50.5 / GTK 4.22**.
 
@@ -11,6 +12,8 @@ Probado en **GNOME Shell 50.5 / GTK 4.22**.
 | Tema | Estilo | GTK3 | GTK4 | Shell | Estado |
 |------|--------|:----:|:----:|:-----:|--------|
 | [`retro-001`](retro/retro-001/) | Retro OS · bisel 3D · beige + acento azul · dark automático | ✅ | ✅ | ✅ | usable |
+| [`minimal-001`](minimal/minimal-001/) | Minimal · flat 6px · monocromo + relieve suave · dark automático | ✅ | ✅ | ✅ | usable |
+| [`minimal-001-transparent`](minimal/minimal-001-transparent/) | Idem pero **translúcido** (shell glass + GTK con alpha) | ✅ | ✅ | ✅ | usable |
 
 > `Orchis/` (gitignored) es una dependencia de terceros, **no** es un tema propio.
 
@@ -92,16 +95,35 @@ gnome-themes/
 ├── pack.sh                  # empaqueta los temas en dist/ (.zip / .tar.gz)
 ├── stk                      # binario STK vendoreado (logging del instalador)
 ├── Orchis/                  # (gitignored) dependencia de terceros
-└── retro/
-    ├── retro-001/           # tema completo (GTK3 + GTK4 + shell clara)
-    │   ├── index.theme      # "ficha" del tema
-    │   ├── README.md        # detalle del tema
-    │   ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
-    │   ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark automático)
+├── retro/
+│   ├── retro-001/           # tema completo (GTK3 + GTK4 + shell clara)
+│   │   ├── index.theme      # "ficha" del tema
+│   │   ├── README.md        # detalle del tema
+│   │   ├── gtk-3.0/         # tema GTK3 (palette.css + reglas)
+│   │   ├── gtk-4.0/         # override GTK4/libadwaita (claro + dark automático)
+│   │   └── gnome-shell/     # tema de Shell (clara/oscura)
+│   └── retro-001-dark/      # solo shell oscura (entrada aparte en Tweaks)
+│       ├── index.theme
+│       └── gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css
+└── minimal/
+    ├── minimal-001/         # tema completo SÓLIDO (GTK3 + GTK4 + shell clara)
+    │   ├── index.theme
+    │   ├── README.md
+    │   ├── gtk-3.0/
+    │   ├── gtk-4.0/
     │   └── gnome-shell/     # tema de Shell (clara/oscura)
-    └── retro-001-dark/      # solo shell oscura (entrada aparte en Tweaks)
+    ├── minimal-001-dark/    # solo shell oscura (entrada aparte en Tweaks)
+    │   ├── index.theme
+    │   └── gnome-shell/gnome-shell.css -> ../../minimal-001/gnome-shell/gnome-shell-dark.css
+    ├── minimal-001-transparent/   # tema completo TRANSLÚCIDO (shell glass + GTK alpha)
+    │   ├── index.theme
+    │   ├── README.md
+    │   ├── gtk-3.0/
+    │   ├── gtk-4.0/
+    │   └── gnome-shell/     # shell translúcida (clara/oscura)
+    └── minimal-001-transparent-dark/  # solo shell oscura translúcida
         ├── index.theme
-        └── gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css
+        └── gnome-shell/gnome-shell.css -> ../../minimal-001-transparent/gnome-shell/gnome-shell-dark.css
 ```
 
 ## Notas
