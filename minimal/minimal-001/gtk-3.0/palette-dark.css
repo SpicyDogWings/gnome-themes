@@ -1,0 +1,80 @@
+/* ============================================================================
+ * minimal-001 — GTK3 PALETTE · DARK variant (single source)
+ * ----------------------------------------------------------------------------
+ * Imported by gtk-dark.css. Same keys as palette.css, dark values.
+ * ========================================================================== */
+
+/* --- minimal palette (dark) --- */
+@define-color bg          #0e0e10;  /* near-black window background  */
+@define-color fg          #e8e8ea;  /* text                          */
+@define-color fg_dim      #8a8a92;  /* secondary text / icons        */
+@define-color base        #141417;  /* inputs / lists / views        */
+@define-color surface     #1b1b1f;  /* buttons / cards / popovers    */
+@define-color hover       #26262b;  /* hover                         */
+@define-color border      #2b2b31;  /* hairline borders              */
+@define-color accent      #5c85c5;  /* blue (focus, selection)       */
+@define-color accent_fg   #ffffff;
+@define-color title       @bg;      /* flat titlebar                 */
+@define-color title_fg    @fg;
+@define-color active      @accent;
+@define-color active_fg   @accent_fg;
+@define-color success     #4c9e74;
+@define-color warning     #c7913f;
+@define-color error       #c05c52;
+@define-color info        #6f9ad6;
+
+/* --- names GTK3 and apps expect --- */
+@define-color theme_bg_color          @bg;
+@define-color theme_fg_color          @fg;
+@define-color theme_base_color        @base;
+@define-color theme_text_color        @fg;
+@define-color theme_selected_bg_color @active;
+@define-color theme_selected_fg_color @active_fg;
+@define-color insensitive_bg_color    @surface;
+@define-color insensitive_fg_color    @fg_dim;
+@define-color insensitive_base_color  @base;
+@define-color borders                 @border;
+@define-color warning_color           @warning;
+@define-color error_color             @error;
+@define-color success_color           @success;
+@define-color content_view_bg         @base;
+@define-color text_view_bg            @base;
+
+/* --- backdrop / unfocused --- */
+@define-color theme_unfocused_fg_color         @fg;
+@define-color theme_unfocused_text_color       @fg;
+@define-color theme_unfocused_bg_color         @bg;
+@define-color theme_unfocused_base_color       @base;
+@define-color theme_unfocused_selected_bg_color @active;
+@define-color theme_unfocused_selected_fg_color @active_fg;
+
+/* --- libadwaita-style names --- */
+@define-color accent_color    @accent;
+@define-color accent_bg_color @accent;
+@define-color accent_fg_color @accent_fg;
+@define-color destructive_bg_color @error;
+@define-color destructive_fg_color @accent_fg;
+@define-color error_bg_color   @error;
+@define-color error_fg_color   @accent_fg;
+@define-color success_bg_color @success;
+@define-color success_fg_color @accent_fg;
+@define-color warning_bg_color @warning;
+@define-color warning_fg_color @accent_fg;
+
+@define-color window_bg_color   @bg;
+@define-color window_fg_color   @fg;
+@define-color view_bg_color     @base;
+@define-color view_fg_color     @fg;
+@define-color headerbar_bg_color @title;
+@define-color headerbar_fg_color @title_fg;
+@define-color headerbar_backdrop_color @title;
+@define-color popover_bg_color  @surface;
+@define-color popover_fg_color  @fg;
+@define-color card_bg_color     @surface;
+@define-color card_fg_color     @fg;
+@define-color dialog_bg_color   @surface;
+@define-color dialog_fg_color   @fg;
+@define-color sidebar_bg_color  @bg;
+@define-color sidebar_fg_color  @fg;
+@define-color sidebar_backdrop_color @bg;
+@define-color sidebar_border_color   @border;
