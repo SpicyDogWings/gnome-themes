@@ -1,27 +1,32 @@
 /* ============================================================================
  * minimal-001 — GTK3 PALETTE · DARK variant (single source)
  * ----------------------------------------------------------------------------
- * Imported by gtk-dark.css. Same keys as palette.css, dark values.
+ * Monochrome (grayscale). Imported by gtk-dark.css. Same keys as palette.css.
  * ========================================================================== */
 
-/* --- minimal palette (dark) --- */
-@define-color bg          #0e0e10;  /* near-black window background  */
-@define-color fg          #e8e8ea;  /* text                          */
-@define-color fg_dim      #8a8a92;  /* secondary text / icons        */
-@define-color base        #141417;  /* inputs / lists / views        */
-@define-color surface     #1b1b1f;  /* buttons / cards / popovers    */
-@define-color hover       #26262b;  /* hover                         */
-@define-color border      #2b2b31;  /* hairline borders              */
-@define-color accent      #5c85c5;  /* blue (focus, selection)       */
+/* --- minimal monochrome palette (dark) --- */
+@define-color bg          #0d0d0f;  /* near-black window background  */
+@define-color fg          #e9e9ec;  /* text                          */
+@define-color fg_dim      #8b8b93;  /* secondary text / icons        */
+@define-color base        #121215;  /* inputs / lists / views        */
+@define-color surface     #19191d;  /* buttons / cards / popovers    */
+@define-color hover       #232329;  /* hover                         */
+@define-color raised      #2a2a31;  /* selected / active fill        */
+@define-color border      #2b2b32;  /* hairline borders              */
+@define-color hl          rgba(255, 255, 255, 0.07);  /* gloss (gradient) */
+@define-color hl_line     rgba(255, 255, 255, 0.10);  /* gloss (1px line) */
+@define-color shade       rgba(0, 0, 0, 0.45);        /* soft shadow      */
+@define-color accent      #33333c;  /* selection fill (grayscale)    */
 @define-color accent_fg   #ffffff;
+@define-color focus       #8a8a95;  /* focus outline                 */
 @define-color title       @bg;      /* flat titlebar                 */
 @define-color title_fg    @fg;
 @define-color active      @accent;
 @define-color active_fg   @accent_fg;
-@define-color success     #4c9e74;
-@define-color warning     #c7913f;
-@define-color error       #c05c52;
-@define-color info        #6f9ad6;
+@define-color success     #b7b7bd;
+@define-color warning     #8b8b93;
+@define-color error       #e9e9ec;
+@define-color info        #9a9aa2;
 
 /* --- names GTK3 and apps expect --- */
 @define-color theme_bg_color          @bg;

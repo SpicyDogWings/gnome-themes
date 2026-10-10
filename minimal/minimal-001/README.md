@@ -1,12 +1,12 @@
 # minimal-001
 
-Tema propio, **minimalista**. Estado: **GTK3 hecho**, **GTK4 aplicado** (claro +
-dark automático), **Shell incluido** (chara + oscura).
+Tema propio, **minimalista monocromático**. Estado: **GTK3 hecho**, **GTK4
+aplicado** (claro + dark automático), **Shell incluido** (clara + oscura).
 
-Estética: casi monocromo, esquinas **6px**, bordes finos de **1px**, flát (sin
-bisel, sin gradientes, sin sombras fuertes). Acento azul apagado solo para foco
-y selección. **Dark = casi negro** (`bg #0e0e10`), **light = gris muy claro**
-(`bg #f4f4f5`).
+Estética: **monocromo** (grayscale), esquinas **6px**, bordes finos de **1px** y
+un **relieve suave moderno** (gradiente vertical sutil + highlight interior
+arriba). Sin color de acento: selección/hover/activo son escalones de gris.
+**Dark = casi negro** (`bg #0d0d0f`), **light = gris muy claro** (`bg #f4f4f5`).
 
 ## Estructura
 
@@ -38,8 +38,8 @@ gtk-themes/                    # repo
 
 ## GTK3
 
-Tema minimal completo: base Adwaita + paleta propia + reglas (flát, radio 6px,
-bordes de 1px). Dos variantes:
+Tema minimal monocromo completo: base Adwaita + paleta propia + reglas (flát,
+radio 6px, bordes de 1px, relieve suave). Dos variantes:
 
 - `gtk.css` → **clara** (base Adwaita claro + `palette.css` + `rules.css`)
 - `gtk-dark.css` → **oscura** (base Adwaita dark + `palette-dark.css` + `rules.css`)
@@ -100,8 +100,10 @@ Para que Tweaks liste la variante oscura como entrada aparte existe
 `minimal-001-dark/` (solo-shell), cuyo `gnome-shell/gnome-shell.css` apunta acá.
 
 El base es el CSS stock del shell (extraído del gresource) con el `border-radius`
-forzado a **6px**; los overrides (con la paleta literal) van al final de cada
-archivo.
+forzado a **6px** y `-st-accent-color` **horneado a gris** (para que sea
+monocromo: ese color lo setea el sistema y el tema no lo puede redefinir). Los
+overrides (con la paleta literal + gradientes `background-gradient-*`) van al
+final de cada archivo.
 
 Necesita la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell, o):
 

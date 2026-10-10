@@ -12,7 +12,7 @@ Probado en **GNOME Shell 50.5 / GTK 4.22**.
 | Tema | Estilo | GTK3 | GTK4 | Shell | Estado |
 |------|--------|:----:|:----:|:-----:|--------|
 | [`retro-001`](retro/retro-001/) | Retro OS · bisel 3D · beige + acento azul · dark automático | ✅ | ✅ | ✅ | usable |
-| [`minimal-001`](minimal/minimal-001/) | Minimal · flat 6px · casi monocromo + acento azul · dark automático | ✅ | ✅ | ✅ | usable |
+| [`minimal-001`](minimal/minimal-001/) | Minimal · flat 6px · monocromo + relieve suave · dark automático | ✅ | ✅ | ✅ | usable |
 
 > `Orchis/` (gitignored) es una dependencia de terceros, **no** es un tema propio.
 

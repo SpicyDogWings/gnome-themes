@@ -1,10 +1,11 @@
 /* ============================================================================
- * minimal-001 — GTK4 · estilo MINIMAL
+ * minimal-001 — GTK4 · estilo MINIMAL MONO
  * ----------------------------------------------------------------------------
- * Near-black + subtle blue accent · small radius (6px) · hairline 1px borders
- * · flat (no bevel, no gradients, no strong shadows).
+ * Near-black monochrome · small radius (6px) · hairline 1px borders ·
+ * soft modern relief (inner top highlight) + subtle monochrome gradients.
+ * No color accent: selection/hover/active are grayscale steps.
  * Light variant by default + automatic DARK variant (follows the system
- * color-scheme) at the end of the palette.
+ * color-scheme) further down the palette.
  * Installed as a user override at ~/.config/gtk-4.0/gtk.css
  * ========================================================================== */
 
@@ -13,17 +14,22 @@
 @define-color fg          #1b1b1f;  /* text                         */
 @define-color fg_dim      #6b6b72;  /* secondary text / icons       */
 @define-color base        #ffffff;  /* inputs / lists / views       */
-@define-color surface     #ececed;  /* buttons / cards / popovers   */
-@define-color hover       #e2e2e4;  /* hover                        */
-@define-color border      #d9d9dc;  /* hairline borders             */
-@define-color accent      #3e6baa;  /* blue (focus, selection)      */
-@define-color accent_fg   #ffffff;
+@define-color surface     #ececee;  /* buttons / cards / popovers   */
+@define-color hover       #e3e3e6;  /* hover                        */
+@define-color raised      #ffffff;  /* selected / active fill       */
+@define-color border      #d9d9de;  /* hairline borders             */
+@define-color hl          rgba(255, 255, 255, 0.90);  /* gloss top (gradient) */
+@define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss top (1px line) */
+@define-color shade       rgba(0, 0, 0, 0.08);        /* soft drop shadow     */
+@define-color accent      #d5d5db;  /* selection fill (grayscale)   */
+@define-color accent_fg   #1b1b1f;
+@define-color focus       #8a8a95;  /* focus outline (grayscale)    */
 @define-color active      @accent;
 @define-color active_fg   @accent_fg;
-@define-color success     #3f8f6b;
-@define-color warning     #b5822f;
-@define-color error       #b4534b;
-@define-color info        #4a6fa5;
+@define-color success     #8f8f96;
+@define-color warning     #6b6b72;
+@define-color error       #2a2a2e;
+@define-color info        #7c7c84;
 
 
 /* --- names plain GTK4 expects (theme_*) --- */
@@ -95,24 +101,26 @@
 @define-color active_toggle_fg_color @accent_fg;
 
 
-/* --- DARK variant (follows the system color-scheme) -----------------------
- * GTK binds this provider's `prefers-color-scheme` to the setting, so setting
- * GNOME to dark mode redefines these keys and every rule below (which
- * references the keys) turns dark. */
+/* --- DARK variant (follows the system color-scheme) ----------------------- */
 @media (prefers-color-scheme: dark) {
-  @define-color bg       #0e0e10;  /* near-black window background  */
-  @define-color fg       #e8e8ea;  /* text                          */
-  @define-color fg_dim   #8a8a92;  /* secondary text / icons        */
-  @define-color base     #141417;  /* inputs / lists / views        */
-  @define-color surface  #1b1b1f;  /* buttons / cards / popovers    */
-  @define-color hover    #26262b;  /* hover                         */
-  @define-color border   #2b2b31;  /* hairline borders              */
-  @define-color accent   #5c85c5;  /* blue (focus, selection)       */
+  @define-color bg       #0d0d0f;  /* near-black window background   */
+  @define-color fg       #e9e9ec;  /* text                           */
+  @define-color fg_dim   #8b8b93;  /* secondary text / icons         */
+  @define-color base     #121215;  /* inputs / lists / views         */
+  @define-color surface  #19191d;  /* buttons / cards / popovers     */
+  @define-color hover    #232329;  /* hover                          */
+  @define-color raised   #2a2a31;  /* selected / active fill         */
+  @define-color border   #2b2b32;  /* hairline borders               */
+  @define-color hl          rgba(255, 255, 255, 0.07);  /* gloss top */
+  @define-color hl_line     rgba(255, 255, 255, 0.10);
+  @define-color shade       rgba(0, 0, 0, 0.45);
+  @define-color accent   #33333c;  /* selection fill (grayscale)     */
   @define-color accent_fg #ffffff;
-  @define-color success  #4c9e74;
-  @define-color warning  #c7913f;
-  @define-color error    #c05c52;
-  @define-color info     #6f9ad6;
+  @define-color focus    #8a8a95;
+  @define-color success  #b7b7bd;
+  @define-color warning  #8b8b93;
+  @define-color error    #e9e9ec;
+  @define-color info     #9a9aa2;
 }
 
 
@@ -137,6 +145,7 @@ headerbar:backdrop, .titlebar:backdrop { background-color: @bg; color: @fg_dim; 
 headerbar .title { font-weight: bold; }
 headerbar button, headerbar .titlebutton {
   background-color: transparent;
+  background-image: none;
   border-color: transparent;
   box-shadow: none;
 }
@@ -148,6 +157,7 @@ headerbar button:active, headerbar button:checked { background-color: @accent; c
 windowcontrols { border-spacing: 2px; }
 windowcontrols button {
   background-color: transparent;
+  background-image: none;
   border: none;
   border-radius: 6px;
   box-shadow: none;
@@ -157,41 +167,65 @@ windowcontrols button:active { background-color: @accent; }
 windowcontrols image { background: none; }
 
 
-/* --- Buttons (flat, hairline) --- */
+/* --- Buttons: soft modern relief (gradient + inner top highlight) --- */
 button {
   background-color: @surface;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 48%);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: inset 0 1px 0 @hl_line, 0 1px 2px @shade;
   -gtk-icon-filter: none;
   margin: 0;
   padding: 4px 12px;
 }
-button:hover { background-color: @hover; }
-button:active, button:checked { background-color: @accent; color: @accent_fg; border-color: @accent; }
-button:disabled { color: @fg_dim; }
-button.flat { background-color: transparent; border-color: transparent; }
-button.flat:hover { background-color: @hover; }
-button.flat:checked { background-color: @accent; color: @accent_fg; }
-button.suggested-action { background-color: @accent; color: @accent_fg; border-color: @accent; }
-button.destructive-action { background-color: @error; color: @accent_fg; border-color: @error; }
+button:hover {
+  background-color: @hover;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 48%);
+}
+button:active, button:checked {
+  background-color: @accent;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
+  color: @accent_fg;
+  border-color: @border;
+  box-shadow: inset 0 1px 0 @hl_line, 0 1px 2px @shade;
+}
+button:disabled { color: @fg_dim; box-shadow: none; }
+button.flat {
+  background-color: transparent;
+  background-image: none;
+  border-color: transparent;
+  box-shadow: none;
+}
+button.flat:hover { background-color: @hover; background-image: linear-gradient(to bottom, @hl, transparent 48%); }
+button.flat:checked { background-color: @accent; background-image: none; color: @accent_fg; }
+button.suggested-action {
+  background-color: @accent;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
+  color: @accent_fg;
+  border-color: @border;
+}
+button.destructive-action {
+  background-color: @error;
+  background-image: linear-gradient(to bottom, @hl, transparent 55%);
+  color: @accent_fg;
+  border-color: @border;
+}
 
-button.toggle:checked, stackswitcher > button:checked { background-color: @accent; color: @accent_fg; border-color: @accent; }
+button.toggle:checked, stackswitcher > button:checked { background-color: @accent; background-image: none; color: @accent_fg; }
 
 
-/* --- Entries (base, hairline, focus accent) --- */
+/* --- Entries (base, hairline, focus) --- */
 entry, spinbutton, searchentry {
   background-color: @base;
   background-image: none;
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: inset 0 1px 2px @shade;
   caret-color: @fg;
 }
-entry:focus-within, spinbutton:focus-within, searchentry:focus-within { border-color: @accent; box-shadow: none; }
+entry:focus-within, spinbutton:focus-within, searchentry:focus-within { border-color: @focus; box-shadow: none; }
 spinbutton > text, spinbutton.vertical > text { background-color: transparent; background-image: none; color: @fg; }
 
 
@@ -215,29 +249,34 @@ popover.menu modelbutton:selected,
 .navigation-sidebar > row:selected,
 .sidebar > row:selected, .sidebar row:selected, stacksidebar row:selected {
   background-color: @accent;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 55%);
   color: @accent_fg;
+  box-shadow: inset 0 1px 0 @hl_line;
 }
 label:selected { color: @accent_fg; }
 
 
-/* --- Cards / sidebar items --- */
-card, .card { border-radius: 6px; }
+/* --- Cards / sidebar items (relief) --- */
+card, .card {
+  border-radius: 6px;
+  background-image: linear-gradient(to bottom, @hl, transparent 50%);
+  box-shadow: inset 0 1px 0 @hl_line, 0 1px 2px @shade;
+}
 .navigation-sidebar > row, listview > row, list > row { border-radius: 6px; }
 
 
-/* --- Menus / popovers --- */
+/* --- Menus / popovers (relief) --- */
 popover.background { background-color: transparent; border: none; box-shadow: none; }
 popover > contents, menu, .menu {
   background-color: @surface;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 55%);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+  box-shadow: inset 0 1px 0 @hl_line, 0 8px 24px @shade;
 }
 popover > arrow { background-color: @surface; border: 1px solid @border; box-shadow: none; }
-modelbutton:hover { background-color: @accent; color: @accent_fg; }
+modelbutton:hover { background-color: @accent; background-image: none; color: @accent_fg; }
 
 
 /* --- GtkNotebook (classic tabs) --- */
@@ -245,44 +284,49 @@ notebook > header { background-color: @bg; border-color: @border; }
 notebook > header > tabs > tab {
   color: @fg;
   background-color: @surface;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 48%);
   border: 1px solid @border;
   border-radius: 6px;
 }
 notebook > header > tabs > tab:hover { background-color: @hover; }
-notebook > header > tabs > tab:checked { background-color: @bg; }
+notebook > header > tabs > tab:checked { background-color: @bg; background-image: none; }
 
 
-/* --- Switch --- */
+/* --- Switch (relief) --- */
 switch {
   background-color: @base;
+  background-image: linear-gradient(to bottom, @hl, transparent 48%);
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: inset 0 1px 2px @shade;
 }
-switch:checked { background-color: @accent; border-color: @accent; }
+switch:checked { background-color: @accent; border-color: @border; }
 switch > slider {
   background-color: @surface;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
   border: 1px solid @border;
   border-radius: 6px;
   min-width: 16px;
   min-height: 16px;
+  box-shadow: inset 0 1px 0 @hl_line, 0 1px 1px @shade;
 }
 
 
 /* --- Check / Radio --- */
 check, radio {
   background-color: @base;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 48%);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: inset 0 1px 1px @shade;
 }
 check:checked, radio:checked, check:indeterminate, radio:indeterminate {
   background-color: @accent;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
   color: @accent_fg;
-  border-color: @accent;
+  border-color: @border;
+  box-shadow: inset 0 1px 0 @hl_line;
 }
 
 
@@ -292,14 +336,15 @@ scale > trough {
   background-image: none;
   border: 1px solid @border;
   border-radius: 6px;
+  box-shadow: inset 0 1px 2px @shade;
 }
 scale > trough > fill, scale > trough > highlight { background-color: @accent; background-image: none; border: none; border-radius: 6px; }
 scale > trough > slider {
   background-color: @surface;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
   border: 1px solid @border;
   border-radius: 6px;
-  box-shadow: none;
+  box-shadow: inset 0 1px 0 @hl_line, 0 1px 2px @shade;
 }
 scale > trough > slider:hover { background-color: @hover; }
 scale > trough > slider:active { background-color: @accent; }
@@ -310,7 +355,7 @@ scrollbar.overlay-indicator > range > trough > slider,
 scrollbar.overlay-indicator.dragging > range > trough > slider,
 scrollbar.overlay-indicator.hovering > range > trough > slider {
   background-color: @surface;
-  background-image: none;
+  background-image: linear-gradient(to bottom, @hl, transparent 48%);
   border: 1px solid @border;
   border-radius: 6px;
   margin: 0;
@@ -322,21 +367,28 @@ progressbar > trough {
   background-image: none;
   border: 1px solid @border;
   border-radius: 6px;
+  box-shadow: inset 0 1px 2px @shade;
   min-height: 8px;
 }
-progressbar > trough > progress { background-color: @accent; background-image: none; border: none; border-radius: 6px; }
+progressbar > trough > progress {
+  background-color: @accent;
+  background-image: linear-gradient(to bottom, @hl_line, transparent 55%);
+  border: none;
+  border-radius: 6px;
+}
 
 levelbar > trough {
   background-color: @surface;
   background-image: none;
   border: 1px solid @border;
   border-radius: 6px;
+  box-shadow: inset 0 1px 2px @shade;
   min-height: 8px;
 }
 levelbar > trough > block        { background-color: @bg; border: none; border-radius: 6px; }
 levelbar > trough > block.filled { background-color: @accent; }
 
-spinner { color: @accent; }
+spinner { color: @fg_dim; }
 
 entry > progress > trough > progress,
 spinbutton > progress > trough > progress,
@@ -349,10 +401,10 @@ spinbutton.vertical > text > progress > trough > progress {
 
 
 /* --- Focus (outline) --- */
-*:focus, *:focus-visible, *:focus-within { outline-color: @accent; }
+*:focus, *:focus-visible, *:focus-within { outline-color: @focus; }
 
 
-/* --- Semantic states --- */
+/* --- Semantic states (monochrome) --- */
 .error   { color: @error; }
 .warning { color: @warning; }
 .success { color: @success; }
@@ -360,11 +412,11 @@ spinbutton.vertical > text > progress > trough > progress {
 infobar.info > revealer > box     { background-color: @info;    color: @accent_fg; }
 infobar.question > revealer > box { background-color: @info;    color: @accent_fg; }
 infobar.warning > revealer > box  { background-color: @warning; color: @accent_fg; }
-infobar.error > revealer > box    { background-color: @error;   color: @accent_fg; }
+infobar.error > revealer > box    { background-color: @error;   color: @bg; }
 
 
 /* --- PopoverMenuBar / labels / calendar --- */
-menubar > item:selected { box-shadow: inset 0 -2px @accent; color: @accent; }
+menubar > item:selected { box-shadow: inset 0 -2px @focus; color: @fg; }
 label > selection { background-color: @accent; color: @accent_fg; }
-calendar > grid > label.day-number:checked  { background-color: alpha(@accent, 0.28); border-radius: 6px; }
+calendar > grid > label.day-number:checked  { background-color: @accent; border-radius: 6px; }
 calendar > grid > label.day-number:selected { background-color: @accent; color: @accent_fg; border-radius: 6px; }

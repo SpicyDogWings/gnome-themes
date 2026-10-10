@@ -1,30 +1,35 @@
 /* ============================================================================
  * minimal-001 — GTK3 PALETTE · LIGHT variant (single source)
  * ----------------------------------------------------------------------------
- * This file defines COLORS only. Imported by:
+ * Monochrome (grayscale). This file defines COLORS only. Imported by:
  *   - gtk.css       (light variant)
  *   - gtk-dark.css  imports palette-dark.css (dark variant)
  * Edit colors ONLY here.
  * ========================================================================== */
 
-/* --- minimal palette --- */
+/* --- minimal monochrome palette --- */
 @define-color bg          #f4f4f5;  /* window background            */
 @define-color fg          #1b1b1f;  /* text                         */
 @define-color fg_dim      #6b6b72;  /* secondary text / icons       */
 @define-color base        #ffffff;  /* inputs / lists / views       */
-@define-color surface     #ececed;  /* buttons / cards / popovers   */
-@define-color hover       #e2e2e4;  /* hover                        */
-@define-color border      #d9d9dc;  /* hairline borders             */
-@define-color accent      #3e6baa;  /* blue (focus, selection)      */
-@define-color accent_fg   #ffffff;
+@define-color surface     #ececee;  /* buttons / cards / popovers   */
+@define-color hover       #e3e3e6;  /* hover                        */
+@define-color raised      #ffffff;  /* selected / active fill       */
+@define-color border      #d9d9de;  /* hairline borders             */
+@define-color hl          rgba(255, 255, 255, 0.90);  /* gloss (gradient) */
+@define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss (1px line) */
+@define-color shade       rgba(0, 0, 0, 0.08);        /* soft shadow      */
+@define-color accent      #d5d5db;  /* selection fill (grayscale)   */
+@define-color accent_fg   #1b1b1f;
+@define-color focus       #8a8a95;  /* focus outline                */
 @define-color title       @bg;      /* flat titlebar                */
 @define-color title_fg    @fg;
 @define-color active      @accent;
 @define-color active_fg   @accent_fg;
-@define-color success     #3f8f6b;
-@define-color warning     #b5822f;
-@define-color error       #b4534b;
-@define-color info        #4a6fa5;
+@define-color success     #8f8f96;
+@define-color warning     #6b6b72;
+@define-color error       #2a2a2e;
+@define-color info        #7c7c84;
 
 /* --- names GTK3 and apps expect --- */
 @define-color theme_bg_color          @bg;
