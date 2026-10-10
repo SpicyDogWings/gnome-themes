@@ -21,6 +21,8 @@
 @define-color hl          rgba(255, 255, 255, 0.90);  /* gloss top (gradient) */
 @define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss top (1px line) */
 @define-color shade       rgba(0, 0, 0, 0.08);        /* soft drop shadow     */
+@define-color gloss_top   rgba(255, 255, 255, 0.65);  /* relief top-right    */
+@define-color gloss_bot   rgba(0, 0, 0, 0.05);        /* relief bottom-left  */
 @define-color accent      #d5d5d5;  /* selection fill (grayscale)   */
 @define-color accent_fg   #1b1b1b;
 @define-color focus       #8a8a8a;  /* focus outline (grayscale)    */
@@ -114,6 +116,8 @@
   @define-color hl          rgba(255, 255, 255, 0.07);  /* gloss top */
   @define-color hl_line     rgba(255, 255, 255, 0.10);
   @define-color shade       rgba(0, 0, 0, 0.45);
+  @define-color gloss_top   rgba(255, 255, 255, 0.07);  /* relief top-right  */
+  @define-color gloss_bot   rgba(0, 0, 0, 0.28);        /* relief bottom-left */
   @define-color accent   #373737;  /* selection fill (grayscale)     */
   @define-color accent_fg #ffffff;
   @define-color focus    #8e8e8e;
@@ -170,7 +174,7 @@ windowcontrols image { background: none; }
 /* --- Buttons: soft modern relief (gradient + inner top highlight) --- */
 button {
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
@@ -181,11 +185,11 @@ button {
 }
 button:hover {
   background-color: @hover;
-  background-image: linear-gradient(225deg, @hl_line, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
 }
 button:active, button:checked {
   background-color: @accent;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @accent_fg;
   border-color: @border;
   box-shadow: inset -1px 1px 0 @hl_line, 0 1px 2px @shade;
@@ -197,17 +201,17 @@ button.flat {
   border-color: transparent;
   box-shadow: none;
 }
-button.flat:hover { background-color: @hover; background-image: linear-gradient(225deg, @hl, transparent 48%); }
+button.flat:hover { background-color: @hover; background-image: linear-gradient(225deg, @gloss_top, @gloss_bot); }
 button.flat:checked { background-color: @accent; background-image: none; color: @accent_fg; }
 button.suggested-action {
   background-color: @accent;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @accent_fg;
   border-color: @border;
 }
 button.destructive-action {
   background-color: @error;
-  background-image: linear-gradient(225deg, @hl, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @bg;
   border-color: @border;
 }
@@ -249,7 +253,7 @@ popover.menu modelbutton:selected,
 .navigation-sidebar > row:selected,
 .sidebar > row:selected, .sidebar row:selected, stacksidebar row:selected {
   background-color: @accent;
-  background-image: linear-gradient(225deg, @hl, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @accent_fg;
   box-shadow: inset -1px 1px 0 @hl_line;
 }
@@ -259,7 +263,7 @@ label:selected { color: @accent_fg; }
 /* --- Cards / sidebar items (relief) --- */
 card, .card {
   border-radius: 6px;
-  background-image: linear-gradient(225deg, @hl, transparent 50%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   box-shadow: inset -1px 1px 0 @hl_line, 0 1px 2px @shade;
 }
 .navigation-sidebar > row, listview > row, list > row { border-radius: 6px; }
@@ -269,7 +273,7 @@ card, .card {
 popover.background { background-color: transparent; border: none; box-shadow: none; }
 popover > contents, menu, .menu {
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
@@ -284,7 +288,7 @@ notebook > header { background-color: @bg; border-color: @border; }
 notebook > header > tabs > tab {
   color: @fg;
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: 1px solid @border;
   border-radius: 6px;
 }
@@ -295,7 +299,7 @@ notebook > header > tabs > tab:checked { background-color: @bg; background-image
 /* --- Switch (relief) --- */
 switch {
   background-color: @base;
-  background-image: linear-gradient(225deg, @hl, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: 1px solid @border;
   border-radius: 6px;
   box-shadow: inset 0 1px 2px @shade;
@@ -303,7 +307,7 @@ switch {
 switch:checked { background-color: @accent; border-color: @border; }
 switch > slider {
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: 1px solid @border;
   border-radius: 6px;
   min-width: 16px;
@@ -315,7 +319,7 @@ switch > slider {
 /* --- Check / Radio --- */
 check, radio {
   background-color: @base;
-  background-image: linear-gradient(225deg, @hl, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @fg;
   border: 1px solid @border;
   border-radius: 6px;
@@ -323,7 +327,7 @@ check, radio {
 }
 check:checked, radio:checked, check:indeterminate, radio:indeterminate {
   background-color: @accent;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   color: @accent_fg;
   border-color: @border;
   box-shadow: inset -1px 1px 0 @hl_line;
@@ -341,7 +345,7 @@ scale > trough {
 scale > trough > fill, scale > trough > highlight { background-color: @accent; background-image: none; border: none; border-radius: 6px; }
 scale > trough > slider {
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: 1px solid @border;
   border-radius: 6px;
   box-shadow: inset -1px 1px 0 @hl_line, 0 1px 2px @shade;
@@ -355,7 +359,7 @@ scrollbar.overlay-indicator > range > trough > slider,
 scrollbar.overlay-indicator.dragging > range > trough > slider,
 scrollbar.overlay-indicator.hovering > range > trough > slider {
   background-color: @surface;
-  background-image: linear-gradient(225deg, @hl, transparent 48%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: 1px solid @border;
   border-radius: 6px;
   margin: 0;
@@ -372,7 +376,7 @@ progressbar > trough {
 }
 progressbar > trough > progress {
   background-color: @accent;
-  background-image: linear-gradient(225deg, @hl_line, transparent 55%);
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
   border: none;
   border-radius: 6px;
 }

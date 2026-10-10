@@ -19,6 +19,8 @@
 @define-color hl          rgba(255, 255, 255, 0.90);  /* gloss (gradient) */
 @define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss (1px line) */
 @define-color shade       rgba(0, 0, 0, 0.08);        /* soft shadow      */
+@define-color gloss_top   rgba(255, 255, 255, 0.65);  /* relief top-right    */
+@define-color gloss_bot   rgba(0, 0, 0, 0.05);        /* relief bottom-left  */
 @define-color accent      #d5d5d5;  /* selection fill (grayscale)   */
 @define-color accent_fg   #1b1b1b;
 @define-color focus       #8a8a8a;  /* focus outline                */
