@@ -196,6 +196,6 @@ selection { background-color: @active; color: @active_fg; }
 .warning { color: @warning; }
 .success { color: @success; }
 
-infobar.info    { background-color: @info;    color: @accent_fg; }
-infobar.warning { background-color: @warning; color: @accent_fg; }
+infobar.info    { background-color: @info;    color: @bg; }
+infobar.warning { background-color: @warning; color: @bg; }
 infobar.error   { background-color: @error;   color: @bg; }

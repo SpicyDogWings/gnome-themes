@@ -6,7 +6,7 @@ aplicado** (claro + dark automático), **Shell incluido** (clara + oscura).
 Estética: **monocromo** (grayscale), esquinas **6px**, bordes finos de **1px** y
 un **relieve suave moderno** (gradiente vertical sutil + highlight interior
 arriba). Sin color de acento: selección/hover/activo son escalones de gris.
-**Dark = casi negro** (`bg #0d0d0f`), **light = gris muy claro** (`bg #f4f4f5`).
+**Dark = casi negro** (`bg #0d0d0d`), **light = gris muy claro** (`bg #f4f4f4`).
 
 ## Estructura
 

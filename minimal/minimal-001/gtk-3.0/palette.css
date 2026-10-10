@@ -8,28 +8,28 @@
  * ========================================================================== */
 
 /* --- minimal monochrome palette --- */
-@define-color bg          #f4f4f5;  /* window background            */
-@define-color fg          #1b1b1f;  /* text                         */
-@define-color fg_dim      #6b6b72;  /* secondary text / icons       */
+@define-color bg          #f4f4f4;  /* window background            */
+@define-color fg          #1b1b1b;  /* text                         */
+@define-color fg_dim      #6b6b6b;  /* secondary text / icons       */
 @define-color base        #ffffff;  /* inputs / lists / views       */
-@define-color surface     #ececee;  /* buttons / cards / popovers   */
-@define-color hover       #e3e3e6;  /* hover                        */
+@define-color surface     #ececec;  /* buttons / cards / popovers   */
+@define-color hover       #e3e3e3;  /* hover                        */
 @define-color raised      #ffffff;  /* selected / active fill       */
-@define-color border      #d9d9de;  /* hairline borders             */
+@define-color border      #d9d9d9;  /* hairline borders             */
 @define-color hl          rgba(255, 255, 255, 0.90);  /* gloss (gradient) */
 @define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss (1px line) */
 @define-color shade       rgba(0, 0, 0, 0.08);        /* soft shadow      */
-@define-color accent      #d5d5db;  /* selection fill (grayscale)   */
-@define-color accent_fg   #1b1b1f;
-@define-color focus       #8a8a95;  /* focus outline                */
+@define-color accent      #d5d5d5;  /* selection fill (grayscale)   */
+@define-color accent_fg   #1b1b1b;
+@define-color focus       #8a8a8a;  /* focus outline                */
 @define-color title       @bg;      /* flat titlebar                */
 @define-color title_fg    @fg;
 @define-color active      @accent;
 @define-color active_fg   @accent_fg;
-@define-color success     #8f8f96;
-@define-color warning     #6b6b72;
-@define-color error       #2a2a2e;
-@define-color info        #7c7c84;
+@define-color success     #5f5f5f;
+@define-color warning     #7a7a7a;
+@define-color error       #3f3f3f;
+@define-color info        #6f6f6f;
 
 /* --- names GTK3 and apps expect --- */
 @define-color theme_bg_color          @bg;
@@ -61,13 +61,13 @@
 @define-color accent_bg_color @accent;
 @define-color accent_fg_color @accent_fg;
 @define-color destructive_bg_color @error;
-@define-color destructive_fg_color @accent_fg;
+@define-color destructive_fg_color @bg;
 @define-color error_bg_color   @error;
-@define-color error_fg_color   @accent_fg;
+@define-color error_fg_color   @bg;
 @define-color success_bg_color @success;
-@define-color success_fg_color @accent_fg;
+@define-color success_fg_color @bg;
 @define-color warning_bg_color @warning;
-@define-color warning_fg_color @accent_fg;
+@define-color warning_fg_color @bg;
 
 @define-color window_bg_color   @bg;
 @define-color window_fg_color   @fg;
