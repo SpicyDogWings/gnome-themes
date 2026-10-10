@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Minimal 001 Transparent
+Comment=Tema minimalista propio translúcido (GTK3 + GTK4, claro/dark)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=minimal-001-transparent
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu

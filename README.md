@@ -13,6 +13,7 @@ Probado en **GNOME Shell 50.5 / GTK 4.22**.
 |------|--------|:----:|:----:|:-----:|--------|
 | [`retro-001`](retro/retro-001/) | Retro OS · bisel 3D · beige + acento azul · dark automático | ✅ | ✅ | ✅ | usable |
 | [`minimal-001`](minimal/minimal-001/) | Minimal · flat 6px · monocromo + relieve suave · dark automático | ✅ | ✅ | ✅ | usable |
+| [`minimal-001-transparent`](minimal/minimal-001-transparent/) | Idem pero **translúcido** (shell glass + GTK con alpha) | ✅ | ✅ | ✅ | usable |
 
 > `Orchis/` (gitignored) es una dependencia de terceros, **no** es un tema propio.
 
@@ -105,15 +106,24 @@ gnome-themes/
 │       ├── index.theme
 │       └── gnome-shell/gnome-shell.css -> ../../retro-001/gnome-shell/gnome-shell-dark.css
 └── minimal/
-    ├── minimal-001/         # tema completo (GTK3 + GTK4 + shell clara)
+    ├── minimal-001/         # tema completo SÓLIDO (GTK3 + GTK4 + shell clara)
     │   ├── index.theme
     │   ├── README.md
     │   ├── gtk-3.0/
     │   ├── gtk-4.0/
     │   └── gnome-shell/     # tema de Shell (clara/oscura)
-    └── minimal-001-dark/    # solo shell oscura (entrada aparte en Tweaks)
+    ├── minimal-001-dark/    # solo shell oscura (entrada aparte en Tweaks)
+    │   ├── index.theme
+    │   └── gnome-shell/gnome-shell.css -> ../../minimal-001/gnome-shell/gnome-shell-dark.css
+    ├── minimal-001-transparent/   # tema completo TRANSLÚCIDO (shell glass + GTK alpha)
+    │   ├── index.theme
+    │   ├── README.md
+    │   ├── gtk-3.0/
+    │   ├── gtk-4.0/
+    │   └── gnome-shell/     # shell translúcida (clara/oscura)
+    └── minimal-001-transparent-dark/  # solo shell oscura translúcida
         ├── index.theme
-        └── gnome-shell/gnome-shell.css -> ../../minimal-001/gnome-shell/gnome-shell-dark.css
+        └── gnome-shell/gnome-shell.css -> ../../minimal-001-transparent/gnome-shell/gnome-shell-dark.css
 ```
 
 ## Notas

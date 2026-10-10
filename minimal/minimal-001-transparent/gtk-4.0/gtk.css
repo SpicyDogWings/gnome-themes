@@ -10,13 +10,13 @@
  * ========================================================================== */
 
 /* --- palette (light, default) --- */
-@define-color bg          #f4f4f4;  /* window background            */
+@define-color bg          rgba(244, 244, 244, 0.72);  /* window background */
 @define-color fg          #1b1b1b;  /* text                         */
 @define-color fg_dim      #6b6b6b;  /* secondary text / icons       */
-@define-color base        #ffffff;  /* inputs / lists / views       */
-@define-color surface     #ececec;  /* buttons / cards / popovers   */
-@define-color hover       #e3e3e3;  /* hover                        */
-@define-color raised      #ffffff;  /* selected / active fill       */
+@define-color base        rgba(255, 255, 255, 0.60);  /* inputs / views  */
+@define-color surface     rgba(236, 236, 236, 0.72);  /* buttons / cards */
+@define-color hover       rgba(227, 227, 227, 0.72);  /* hover         */
+@define-color raised      rgba(255, 255, 255, 0.72);  /* active fill    */
 @define-color border      #d9d9d9;  /* hairline borders             */
 @define-color hl          rgba(255, 255, 255, 0.90);  /* gloss top (gradient) */
 @define-color hl_line     rgba(255, 255, 255, 0.95);  /* gloss top (1px line) */
@@ -105,13 +105,13 @@
 
 /* --- DARK variant (follows the system color-scheme) ----------------------- */
 @media (prefers-color-scheme: dark) {
-  @define-color bg       #0d0d0d;  /* near-black window background   */
+  @define-color bg       rgba(13, 13, 13, 0.65);  /* near-black window */
   @define-color fg       #e9e9e9;  /* text                           */
   @define-color fg_dim   #8b8b8b;  /* secondary text / icons         */
-  @define-color base     #131313;  /* inputs / lists / views         */
-  @define-color surface  #1a1a1a;  /* buttons / cards / popovers     */
-  @define-color hover    #242424;  /* hover                          */
-  @define-color raised   #2a2a2a;  /* selected / active fill         */
+  @define-color base     rgba(19, 19, 19, 0.55);  /* inputs / views   */
+  @define-color surface  rgba(26, 26, 26, 0.68);  /* buttons / cards   */
+  @define-color hover    rgba(36, 36, 36, 0.68);  /* hover            */
+  @define-color raised   rgba(42, 42, 42, 0.68);  /* active fill      */
   @define-color border   #2e2e2e;  /* hairline borders               */
   @define-color hl          rgba(255, 255, 255, 0.07);  /* gloss top */
   @define-color hl_line     rgba(255, 255, 255, 0.10);

@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Minimal 001 Transparent Dark
+Comment=minimal-001-transparent · variante de shell OSCURA translúcida (el resto lo toma de minimal-001-transparent)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=minimal-001-transparent
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu
