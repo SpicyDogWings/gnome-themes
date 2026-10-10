@@ -5,10 +5,11 @@
  *   forced to 6px) + MINIMAL MONO overrides at the end.
  *
  * Monochrome (grayscale): no color accent, selection = gray step.
- * Soft modern relief: subtle vertical gradient + inner top highlight.
+ * Soft modern relief. NOTE: in St the background gradient REPLACES the
+ * background color, so the gradients here are OPAQUE. St has no diagonal
+ * gradient: the top-right illumination is done with an inset box-shadow.
  * St does NOT support @media nor @define-color: the shell theme is a SINGLE
- * variant. The other one lives in gnome-shell-<light|dark>.css
- * (see minimal/README.md).
+ * variant. The other one lives in gnome-shell-<light|dark>.css.
  *
  * Base extracted with:
  *   gresource extract /usr/share/gnome-shell/gnome-shell-theme.gresource \
@@ -3348,14 +3349,14 @@ StScrollBar {
  * Palette (literal, St has no @define-color):
  *   surface #ececee · bg #f4f4f5 · base #ffffff · accent #d5d5db
  *   border #d9d9de · fg #1b1b1f · fg_dim #6b6b72
- * Relief = background-gradient-* (vertical) + inset top highlight.
+ * Relief = OPAQUE vertical gradient + top-right inset highlight.
  * ========================================================================== */
 
-/* --- Top bar: flat surface + hairline bottom border (subtle gloss) --- */
+/* --- Top bar: flat surface + hairline bottom border --- */
 #panel {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   color: #1b1b1f;
   height: 2.4em;
@@ -3377,18 +3378,18 @@ StScrollBar {
 }
 #panel .panel-button:hover, #panel .panel-button:focus {
   background-color: #e3e3e6;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #e3e3e6;
   background-gradient-direction: vertical;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 #panel .panel-button:active, #panel .panel-button:checked {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
   background-gradient-direction: vertical;
   color: #1b1b1f;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 #panel .panel-button.clock-display { background: none; background-gradient-start: transparent; background-gradient-end: transparent; border: none; box-shadow: none; }
 #panel .panel-button#panelActivities .workspace-dot { background-color: #1b1b1f; }
@@ -3397,31 +3398,31 @@ StScrollBar {
 .popup-menu, .candidate-popup-content { color: #1b1b1f; }
 .popup-menu-content, .candidate-popup-content {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   color: #1b1b1f;
   border: 1px solid #d9d9de;
   border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .popup-menu-item { color: #1b1b1f; border-radius: 6px; }
 .popup-menu-item:hover, .popup-menu-item:selected, .popup-menu-item:checked {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
   background-gradient-direction: vertical;
   color: #1b1b1f;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .popup-menu-item:active { background-color: #d5d5db; color: #1b1b1f; }
 .popup-inactive-menu-item { color: #6b6b72; }
 .popup-sub-menu { background-color: #ffffff; border: 1px solid #d9d9de; }
 .popup-sub-menu .popup-menu-item:hover, .popup-sub-menu .popup-menu-item:selected,
-.popup-sub-menu .popup-menu-item:checked {
-  background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+.popup-sub-menu .popup-menu-item:checked {   background-color: #d5d5db;
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 .popup-separator-menu-item .popup-separator-menu-item-separator { background-color: #d9d9de; }
@@ -3430,30 +3431,32 @@ StScrollBar {
 .button, .icon-button {
   color: #1b1b1f;
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
   border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .button:hover, .icon-button:hover {
   background-color: #e3e3e6;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #e3e3e6;
 }
 .button:active, .icon-button:active,
 .button:checked, .icon-button:checked {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .button.default, .icon-button.default {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 .button:focus, .icon-button:focus { box-shadow: inset 0 0 0 1px #8a8a95; }
@@ -3461,23 +3464,30 @@ StScrollBar {
 /* --- Quick settings (relief) --- */
 .quick-toggle, .quick-toggle-menu, .quick-settings {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
 }
 .quick-toggle:checked {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 
 /* --- Sliders / switches --- */
 .slider { background-color: #ffffff; border: 1px solid #d9d9de; }
-.slider:hover { background-color: #d5d5db; background-gradient-start: rgba(255, 255, 255, 0.95); background-gradient-end: rgba(255, 255, 255, 0); }
+.slider:hover {   background-color: #d5d5db;
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical; }
 .toggle-switch { background-color: #ffffff; border: 1px solid #d9d9de; }
-.toggle-switch:checked { background-color: #d5d5db; background-gradient-start: rgba(255, 255, 255, 0.95); background-gradient-end: rgba(255, 255, 255, 0); }
+.toggle-switch:checked {   background-color: #d5d5db;
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical; }
 
 /* --- Entries (sunken) --- */
 StEntry, .search-entry, .entry {
@@ -3492,73 +3502,77 @@ StEntry:focus, .search-entry:focus { border-color: #8a8a95; box-shadow: none; }
 /* --- OSD (relief) --- */
 .osd-window, .osd-monitor-label {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
   border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .osd-window .level-bar { background-color: #d5d5db; }
 
 /* --- Notifications (relief) --- */
 .notification, .message, .message-list { background-color: #ececee; }
 .message {
+  background-color: #ececee;
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
+  background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
   border-radius: 6px;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
-  background-gradient-direction: vertical;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .message .message-header .message-close-button { background-color: #e3e3e6; }
 
 /* --- Modal dialogs (relief) --- */
 .modal-dialog, .end-session-dialog, .run-dialog, .prompt-dialog {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
   border-radius: 6px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 
 /* --- Dash / overview --- */
 .dash-label { background-color: #ececee; border: 1px solid #d9d9de; color: #1b1b1f; }
 .overview-tile:hover .overview-icon, .grid-search-result:hover .overview-icon {
   background-color: #e3e3e6;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #e3e3e6;
 }
 .overview-tile:focus .overview-icon, .overview-tile:selected .overview-icon {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
 }
 
 /* --- Search --- */
 .search-section-content, .search-section .search-section-content { background-color: #ececee; border: 1px solid #d9d9de; }
 .list-search-result:hover, .list-search-result:focus {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 
 /* --- Switchers (relief) --- */
 .switcher-list {
   background-color: #ececee;
-  background-gradient-start: rgba(255, 255, 255, 0.90);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #f6f6f7;
+  background-gradient-end: #ececee;
   background-gradient-direction: vertical;
   border: 1px solid #d9d9de;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  box-shadow: inset -1px 1px 0 rgba(255, 255, 255, 0.95);
 }
 .switcher-list .item-box:selected {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 .workspace-thumbnail-indicator { border: 1px solid #8a8a95; }
@@ -3567,8 +3581,9 @@ StEntry:focus, .search-entry:focus { border-color: #8a8a95; box-shadow: none; }
 .calendar, .datemenu-today-button, .events-button { background-color: #ececee; }
 .calendar .calendar-day.calendar-today {
   background-color: #d5d5db;
-  background-gradient-start: rgba(255, 255, 255, 0.95);
-  background-gradient-end: rgba(255, 255, 255, 0);
+  background-gradient-start: #e3e3e8;
+  background-gradient-end: #d5d5db;
+  background-gradient-direction: vertical;
   color: #1b1b1f;
 }
 .calendar .calendar-day:hover { background-color: #e3e3e6; }
