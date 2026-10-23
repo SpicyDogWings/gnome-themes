@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=Minimal 001 Dark
+Comment=minimal-001 · variante de shell OSCURA (el resto lo toma de minimal-001)
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=minimal-001
+MetacityTheme=Adwaita
+IconTheme=Adwaita
+CursorTheme=Adwaita
+ButtonLayout=close,minimize,maximize:menu

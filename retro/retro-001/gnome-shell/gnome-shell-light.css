@@ -3352,6 +3352,7 @@ StScrollBar {
 #panel {
   background-color: #457B9D;
   color: #ffffff;
+  height: 2.8em;
   border-bottom: 2px solid #404040;
   box-shadow: inset 0 -2px 0 #404040;
 }
@@ -3360,9 +3361,9 @@ StScrollBar {
   border-bottom: none;
   box-shadow: none;
 }
-#panel .panel-button { color: #ffffff; border: 2px solid transparent; box-shadow: none; }
-#panel .panel-button:hover, #panel .panel-button:focus { background-color: rgba(255, 255, 255, 0.18); box-shadow: none; }
-#panel .panel-button:active, #panel .panel-button:checked { background-color: rgba(0, 0, 0, 0.22); box-shadow: none; }
+#panel .panel-button { color: #ffffff; border: 2px solid transparent; box-shadow: inset 0 0 0 100px transparent; }
+#panel .panel-button:hover, #panel .panel-button:focus { box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.18); }
+#panel .panel-button:active, #panel .panel-button:checked { box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.22); }
 #panel .panel-button.clock-display { background: none; border: none; box-shadow: none; }
 #panel .panel-button#panelActivities .workspace-dot { background-color: #ffffff; }
 

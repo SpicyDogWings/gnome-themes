@@ -1,0 +1,200 @@
+/* ============================================================================
+ * minimal-001 — GTK3 RULES (minimal mono) · shared by gtk.css and gtk-dark.css
+ * ----------------------------------------------------------------------------
+ * Flat surfaces, small radius (6px), hairline 1px borders, and a soft modern
+ * relief: subtle monochrome gradient + inner top highlight ("gloss").
+ * No bevel-3D, no strong shadows, no color accent.
+ * Colors come from the palette (@bg, @surface, @border, @hl, @accent…).
+ *
+ * Placed AFTER the base @import + the palette: in GTK3, on equal specificity
+ * the last rule wins.
+ * ========================================================================== */
+
+/* --- small radius --- */
+button, entry, spinbutton, headerbar button, headerbar .titlebutton,
+menu, menuitem, popover, popover.background, popover > contents,
+notebook > header, notebook > header tab, scrollbar slider,
+switch, switch slider, check, radio, progressbar trough, progressbar progress,
+levelbar trough, levelbar block, scale trough, scale slider,
+treeview, treeview.view, .view, infobar, tooltip, combobox, combobox button,
+.linked > button, .linked > entry, .linked > combobox, spinbutton button,
+.sidebar, stacksidebar row, placessidebar row, .filechooser, .app-notification,
+calendar, colorswatch, colorswatch overlay, .card, .osd {
+  border-radius: 6px;
+}
+
+/* --- Windows --- */
+window, .background { background-color: @bg; color: @fg; }
+.gtkstyle-fallback  { background-color: @bg; color: @fg; }
+
+/* --- Titlebar (flat, hairline bottom) --- */
+headerbar, .titlebar {
+  background-color: @title;
+  color: @title_fg;
+  border-style: none none solid none;
+  border-width: 0 0 1px 0;
+  border-color: @border;
+  box-shadow: none;
+}
+headerbar:backdrop, .titlebar:backdrop { background-color: @title; color: @fg_dim; }
+headerbar .title { font-weight: bold; color: @title_fg; }
+headerbar .subtitle { color: @fg_dim; }
+headerbar button, headerbar .titlebutton { color: @fg; background-color: transparent; border-color: transparent; }
+headerbar button:hover, headerbar .titlebutton:hover { background-color: @hover; }
+headerbar button:active, headerbar button:checked { background-color: @accent; color: @accent_fg; }
+headerbar entry, headerbar spinbutton, headerbar button.flat entry { color: @fg; }
+headerbar separator { background-color: @border; }
+
+/* --- Buttons: soft relief (gradient + inner top highlight) --- */
+button {
+  background-color: @surface;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  color: @fg;
+  border: 1px solid @border;
+  box-shadow: inset -1px 1px 0 @hl_line, 0 1px 2px @shade;
+  text-shadow: none;
+  -gtk-icon-shadow: none;
+}
+button:hover {
+  background-color: @hover;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+}
+button:active,
+button:checked {
+  background-color: @accent;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  color: @accent_fg;
+  border-color: @border;
+}
+button.flat                 { background-color: transparent; background-image: none; border-color: transparent; box-shadow: none; }
+button.flat:hover           { background-color: @hover; background-image: linear-gradient(225deg, @gloss_top, @gloss_bot); border-color: transparent; }
+button.flat:checked         { background-color: @accent; background-image: none; color: @accent_fg; }
+button.suggested-action     { background-color: @accent; background-image: linear-gradient(225deg, @gloss_top, @gloss_bot); color: @accent_fg; border-color: @border; }
+button.destructive-action   { background-color: @error;  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot); color: @bg; border-color: @border; }
+button:disabled             { color: @insensitive_fg_color; box-shadow: none; }
+
+/* --- Entries (base, hairline, focus) --- */
+entry, spinbutton, .entry {
+  background-color: @base;
+  background-image: none;
+  color: @fg;
+  border: 1px solid @border;
+  box-shadow: inset 0 1px 2px @shade;
+  caret-color: @fg;
+}
+entry:focus, spinbutton:focus, .entry:focus { border-color: @focus; box-shadow: none; }
+
+/* --- Views / lists --- */
+.view, iconview, textview text, treeview.view, list, .list {
+  background-color: @base;
+  color: @fg;
+}
+.view:selected, treeview.view:selected, flowboxchild:selected,
+list row:selected, row:selected {
+  background-color: @active;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  color: @active_fg;
+  box-shadow: inset -1px 1px 0 @hl_line;
+}
+
+/* --- Menus / popovers (relief) --- */
+menu, .menu, popover.background, popover > .background, popover > contents {
+  background-color: @surface;
+  color: @fg;
+  border: 1px solid @border;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35), 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+popover { background-color: transparent; border: none; box-shadow: none; }
+menuitem:hover, modelbutton:hover { background-color: @accent; background-image: none; color: @accent_fg; }
+
+/* --- Notebook (classic tabs) --- */
+notebook > header { background-color: @bg; border-color: @border; }
+notebook > header tab {
+  color: @fg;
+  background-color: @surface;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+}
+notebook > header tab:hover   { background-color: @hover; }
+notebook > header tab:checked { background-color: @bg; background-image: none; }
+
+/* --- Scrollbar --- */
+scrollbar { background-color: @bg; border: none; }
+scrollbar slider {
+  background-color: @surface;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+  min-width: 8px;
+  min-height: 8px;
+}
+scrollbar slider:hover { background-color: @hover; }
+
+/* --- Switch (relief) --- */
+switch {
+  background-color: @base;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+  box-shadow: inset 0 1px 2px @shade;
+}
+switch:checked { background-color: @accent; background-image: none; border-color: @border; }
+switch slider {
+  background-color: @surface;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+  min-width: 18px;
+  min-height: 18px;
+  box-shadow: inset -1px 1px 0 @hl_line, 0 1px 1px @shade;
+}
+
+/* --- Check / Radio --- */
+check, radio {
+  background-color: @base;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+  box-shadow: inset 0 1px 1px @shade;
+}
+check:checked, radio:checked {
+  background-color: @accent;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  color: @accent_fg;
+  border-color: @border;
+}
+
+/* --- Bars: progress / level / scale --- */
+progressbar trough, levelbar trough, scale trough {
+  background-color: @surface;
+  background-image: none;
+  border: 1px solid @border;
+  box-shadow: inset 0 1px 2px @shade;
+}
+progressbar progress, levelbar block.filled, scale highlight {
+  background-color: @accent;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: none;
+}
+scale slider {
+  background-color: @surface;
+  background-image: linear-gradient(225deg, @gloss_top, @gloss_bot);
+  border: 1px solid @border;
+  box-shadow: inset -1px 1px 0 @hl_line, 0 1px 2px @shade;
+}
+scale slider:hover  { background-color: @hover; }
+scale slider:active { background-color: @accent; }
+
+/* --- Toolbar / separators --- */
+toolbar { background-color: @bg; }
+separator { background-color: @border; }
+
+/* --- Focus / selection / links --- */
+*:focus { outline-color: @focus; }
+selection { background-color: @active; color: @active_fg; }
+*:link    { color: @fg; }
+
+/* --- States (monochrome) --- */
+.error   { color: @error; }
+.warning { color: @warning; }
+.success { color: @success; }
+
+infobar.info    { background-color: @info;    color: @bg; }
+infobar.warning { background-color: @warning; color: @bg; }
+infobar.error   { background-color: @error;   color: @bg; }

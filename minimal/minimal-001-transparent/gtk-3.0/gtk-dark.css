@@ -1,0 +1,10 @@
+/* ============================================================================
+ * minimal-001 — GTK3 theme · DARK variant
+ * ----------------------------------------------------------------------------
+ * Same as gtk.css but with Adwaita dark base + palette-dark.css.
+ * GTK loads it when `gtk-application-prefer-dark-theme` is active.
+ * ========================================================================== */
+
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained-dark.css");
+@import url("palette-dark.css");
+@import url("rules.css");

@@ -1,0 +1,13 @@
+/* ============================================================================
+ * minimal-001 — GTK3 theme · LIGHT variant
+ * ----------------------------------------------------------------------------
+ *   1) Adwaita base (light)   -> no widget breaks
+ *   2) minimal palette (light) -> colors in a single place
+ *   3) minimal rules          -> flat, small radius, hairline borders
+ *
+ * Dark variant: gtk-dark.css (GTK uses it when `gtk-application-prefer-dark-theme`).
+ * ========================================================================== */
+
+@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");
+@import url("palette.css");
+@import url("rules.css");
