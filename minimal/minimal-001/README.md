@@ -11,7 +11,7 @@ arriba). Sin color de acento: selección/hover/activo son escalones de gris.
 ## Estructura
 
 ```
-gtk-themes/                    # repo
+gnome-themes/                  # repo
 ├── install.sh                 # instalador (copia a ~/.local/share + override GTK4 + gsettings)
 ├── stk                        # binario STK vendoreado (logging)
 ├── Orchis/                    # (gitignored) dependencia
@@ -68,12 +68,12 @@ En GNOME las apps GTK4 usan **libadwaita**, que **no** lee temas de
 Se instala con:
 
 ```bash
-./install.sh minimal/minimal-001    # solo este tema
+./install.sh minimal/minimal-001    # este tema + su shell oscura
 ```
 
-> Ojo: `./install.sh` sin argumentos instala **todos** los temas y deja como
-> override GTK4 el último que encuentre. Si tenés más de un tema completo
-> (retro-001, minimal-001), pasá el tema explícito.
+> `./install.sh` sin argumentos instala todas las entradas y usa
+> `minimal/minimal-001` como tema GTK por defecto. Para otro tema completo
+> (por ejemplo `retro-001`), pasalo explícito o usá `DEFAULT_THEME`.
 
 ### Variante dark (automática)
 
@@ -98,6 +98,7 @@ Dos variantes (St/libcroco **no** soporta `@media` ni `@define-color`):
 
 Para que Tweaks liste la variante oscura como entrada aparte existe
 `minimal-001-dark/` (solo-shell), cuyo `gnome-shell/gnome-shell.css` apunta acá.
+El instalador la agrega sola al instalar `minimal/minimal-001`.
 
 El base es el CSS stock del shell (extraído del gresource) con el `border-radius`
 forzado a **6px** y `-st-accent-color` **horneado a gris** (para que sea

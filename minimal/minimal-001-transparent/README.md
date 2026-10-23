@@ -18,29 +18,29 @@ arriba). Sin color de acento: selección/hover/activo son escalones de gris.
 ## Estructura
 
 ```
-gtk-themes/                    # repo
+gnome-themes/                  # repo
 ├── install.sh                 # instalador (copia a ~/.local/share + override GTK4 + gsettings)
 ├── stk                        # binario STK vendoreado (logging)
 ├── Orchis/                    # (gitignored) dependencia
 └── minimal/
-    ├── minimal-001/           # el tema
-    │   ├── index.theme        # "ficha" del tema
+    ├── minimal-001-transparent/   # el tema
+    │   ├── index.theme            # "ficha" del tema
     │   ├── README.md
     │   ├── gtk-3.0/
-    │   │   ├── palette.css      # paleta clara (fuente única) + alias
-    │   │   ├── palette-dark.css # paleta oscura
-    │   │   ├── rules.css        # reglas minimal compartidas (flát, 6px, 1px)
-    │   │   ├── gtk.css          # @import Adwaita claro + palette + rules
-    │   │   └── gtk-dark.css     # @import Adwaita dark + palette-dark + rules
+    │   │   ├── palette.css        # paleta clara (fuente única) + alias
+    │   │   ├── palette-dark.css   # paleta oscura
+    │   │   ├── rules.css          # reglas minimal compartidas (flát, 6px, 1px)
+    │   │   ├── gtk.css            # @import Adwaita claro + palette + rules
+    │   │   └── gtk-dark.css       # @import Adwaita dark + palette-dark + rules
     │   ├── gtk-4.0/
-    │   │   └── gtk.css          # GTK4/libadwaita: claro + dark automático
+    │   │   └── gtk.css            # GTK4/libadwaita: claro + dark automático
     │   └── gnome-shell/
-    │       ├── gnome-shell.css        # symlink a la variante activa
-    │       ├── gnome-shell-light.css  # base del shell + overrides minimal (clara)
-    │       └── gnome-shell-dark.css   # base del shell + overrides minimal (oscura)
-    └── minimal-001-dark/      # solo shell oscura (entrada aparte en Tweaks)
+    │       ├── gnome-shell.css          # symlink a la variante activa
+    │       ├── gnome-shell-light.css    # base del shell + overrides (clara)
+    │       └── gnome-shell-dark.css     # base del shell + overrides (oscura)
+    └── minimal-001-transparent-dark/  # solo shell oscura (entrada aparte)
         ├── index.theme
-        └── gnome-shell/gnome-shell.css -> ../../minimal-001/gnome-shell/gnome-shell-dark.css
+        └── gnome-shell/gnome-shell.css -> ../../minimal-001-transparent/gnome-shell/gnome-shell-dark.css
 ```
 
 ## GTK3
@@ -54,12 +54,13 @@ radio 6px, bordes de 1px, relieve suave). Dos variantes:
 GTK3 elige la variante con `gtk-application-prefer-dark-theme` (no sigue el
 `color-scheme` del sistema como GTK4).
 
-- `./install.sh minimal/minimal-001` copia el tema a `~/.local/share/themes/minimal-001`
-  y setea `gtk-theme` con gsettings (o en Tweaks → Apariencia → Legacy Applications).
+- `./install.sh minimal/minimal-001-transparent` copia el tema a
+  `~/.local/share/themes/minimal-001-transparent` y setea `gtk-theme` con
+  gsettings (o en Tweaks → Apariencia → Legacy Applications).
 - Hot reload:
   ```bash
   gsettings set org.gnome.desktop.interface gtk-theme Adwaita
-  gsettings set org.gnome.desktop.interface gtk-theme minimal-001
+  gsettings set org.gnome.desktop.interface gtk-theme minimal-001-transparent
   ```
 
 ## GTK4 / libadwaita
@@ -75,12 +76,12 @@ En GNOME las apps GTK4 usan **libadwaita**, que **no** lee temas de
 Se instala con:
 
 ```bash
-./install.sh minimal/minimal-001    # solo este tema
+./install.sh minimal/minimal-001-transparent    # este tema + su shell oscura
 ```
 
-> Ojo: `./install.sh` sin argumentos instala **todos** los temas y deja como
-> override GTK4 el último que encuentre. Si tenés más de un tema completo
-> (retro-001, minimal-001), pasá el tema explícito.
+> `./install.sh` sin argumentos instala todas las entradas y usa
+> `minimal/minimal-001` (sólido) como tema GTK por defecto. Para el translúcido,
+> pasalo explícito o usá `DEFAULT_THEME=minimal/minimal-001-transparent`.
 
 ### Variante dark (automática)
 
@@ -104,7 +105,9 @@ Dos variantes (St/libcroco **no** soporta `@media` ni `@define-color`):
 - `gnome-shell/gnome-shell.css` → **symlink** a la activa (por defecto, clara)
 
 Para que Tweaks liste la variante oscura como entrada aparte existe
-`minimal-001-dark/` (solo-shell), cuyo `gnome-shell/gnome-shell.css` apunta acá.
+`minimal-001-transparent-dark/` (solo-shell), cuyo
+`gnome-shell/gnome-shell.css` apunta acá. El instalador la agrega sola al
+instalar `minimal/minimal-001-transparent`.
 
 El base es el CSS stock del shell (extraído del gresource) con el `border-radius`
 forzado a **6px** y `-st-accent-color` **horneado a gris** (para que sea
@@ -117,8 +120,8 @@ Necesita la extensión **User Themes**. Activar (Tweaks → Apariencia → Shell
 ```bash
 EXT=~/.local/share/gnome-shell/extensions/user-theme@gnome-shell-extensions.gcampax.github.com
 GSETTINGS_SCHEMA_DIR="$EXT/schemas" \
-  gsettings set org.gnome.shell.extensions.user-theme name minimal-001        # clara
-# o: ... name minimal-001-dark                                                # oscura
+  gsettings set org.gnome.shell.extensions.user-theme name minimal-001-transparent        # clara
+# o: ... name minimal-001-transparent-dark                                               # oscura
 ```
 
 Regenerar los CSS del shell (tras un update del shell). El builder toma el base del

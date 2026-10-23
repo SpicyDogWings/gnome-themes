@@ -31,16 +31,18 @@ Shell** (clara y oscura).
 git clone https://github.com/SpicyDogWings/gnome-themes.git
 cd gnome-themes
 chmod +x install.sh pack.sh stk        # solo si bajaste un ZIP
-./install.sh retro/retro-001 retro/retro-001-dark
+./install.sh retro/retro-001
 ```
 
-También podés ejecutar `./install.sh` sin argumentos para instalar todos los
-temas del repo.
+El instalador agrega solo la entrada `retro-001-dark` (shell oscura) cuando
+existe. `./install.sh` sin argumentos instala todas las entradas y usa
+`minimal/minimal-001` como tema GTK por defecto; para retro usá
+`DEFAULT_THEME=retro/retro-001 ./install.sh`.
 
 > La **shell oscura** vive en `retro-001-dark/` y su
 > `gnome-shell/gnome-shell.css` es un symlink a
-> `../../retro-001/gnome-shell/gnome-shell-dark.css`. Por eso, si instalás solo
-> `retro-001-dark`, el enlace queda roto: instalá siempre las dos carpetas.
+> `../../retro-001/gnome-shell/gnome-shell-dark.css`. Si copiás las carpetas a
+> mano, instalá las dos para que el enlace no quede roto.
 
 ### Qué hace el instalador
 
@@ -102,9 +104,9 @@ esquinas rectas, titlebar en acento). Dos variantes:
 GTK3 elige la variante con `gtk-application-prefer-dark-theme` (no sigue el
 `color-scheme` del sistema como GTK4).
 
-- `./install.sh` copia el tema a `~/.local/share/themes/retro-001` y setea
-  `gtk-theme` con gsettings (o elegilo en Tweaks → Apariencia → Legacy
-  Applications).
+- `./install.sh retro/retro-001` copia el tema a
+  `~/.local/share/themes/retro-001` y setea `gtk-theme` con gsettings (o
+  elegilo en Tweaks → Apariencia → Legacy Applications).
 - El **override de usuario** `~/.config/gtk-3.0/gtk.css` pisa al tema. El
   instalador lo deja neutralizado (backup en `gtk.css.bak.<fecha>`).
 
@@ -128,9 +130,9 @@ En GNOME 50 las apps GTK4 usan **libadwaita**, que **no** lee temas de
 
 `gtk-4.0/gtk.css` está pensado justo para eso (archivo único, autocontenido).
 
-`./install.sh` lo copia a `~/.config/gtk-4.0/gtk.css`, con backup del actual
-como `gtk.css.bak.<fecha>` si es distinto. Revertir: restaurar el backup o
-borrar el archivo.
+`./install.sh retro/retro-001` lo copia a `~/.config/gtk-4.0/gtk.css`, con
+backup del actual como `gtk.css.bak.<fecha>` si es distinto. Revertir:
+restaurar el backup o borrar el archivo.
 
 ### Variante dark (automática)
 
